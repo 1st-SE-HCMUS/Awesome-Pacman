@@ -11,7 +11,6 @@ namespace PacMan
     {
         protected Point PosMap = new Point(5, 2); // current position in map(has bounds)
         protected PointF PosGraph; // current position in graphic
-        protected bool needAdjustPos = false;
         protected enum STATE { Alive, Died }
         protected enum DIRECTION { Left, Right, Up, Down }
 
@@ -66,7 +65,7 @@ namespace PacMan
                         {
                             if (Manager.MapDataWithBound[PosMap.X][PosMap.Y - 1] != CONST.WALL_CHAR)
                             {
-                                needAdjustPos = true;
+                                adjustPos();
                                 CurrDirection = DIRECTION.Left;
                             }
                         }
@@ -79,7 +78,7 @@ namespace PacMan
                         {
                             if (Manager.MapDataWithBound[PosMap.X][PosMap.Y + 1] != CONST.WALL_CHAR)
                             {
-                                needAdjustPos = true;
+                                adjustPos();
                                 CurrDirection = DIRECTION.Right;
                             }
                         }
@@ -91,7 +90,7 @@ namespace PacMan
                         {
                             if (Manager.MapDataWithBound[PosMap.X - 1][PosMap.Y] != CONST.WALL_CHAR)
                             {
-                                needAdjustPos = true;
+                                adjustPos();
                                 CurrDirection = DIRECTION.Up;
                             }
                         }
@@ -103,7 +102,7 @@ namespace PacMan
                         {
                             if (Manager.MapDataWithBound[PosMap.X + 1][PosMap.Y] != CONST.WALL_CHAR)
                             {
-                                needAdjustPos = true;
+                                adjustPos();
                                 CurrDirection = DIRECTION.Down;
                             }
                         }
@@ -174,13 +173,14 @@ namespace PacMan
             g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y + 1));
             g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1));
 
-            if (needAdjustPos == true)
-            {
-                PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
-                needAdjustPos = false;
-            }
+            
             move();
             Manager.drawSolidSquare(g, Brushes.Yellow, CONST.SIZE_MAP_BLOCK, PosGraph.X, PosGraph.Y);
+        }
+
+        private void adjustPos()
+        {
+            PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
     }
     
