@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
     <Compile Include="CONST.cs" />
     <Compile Include="Pacman.cs">
       <SubType>Form</SubType>
