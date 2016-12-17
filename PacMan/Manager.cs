@@ -28,8 +28,6 @@ namespace PacMan
         {
             drawMap(g, MapDataWithBound);
         }
-        
-
 
         //private
         private int readFileMap(ref List<string> mapDataWithBound)
@@ -107,7 +105,7 @@ namespace PacMan
             }
         }
 
-        //Have not used yet
+        //for testing
         static public void drawSolidSquare(Graphics g, Brush brush, float size, float centerX, float centerY)
         {
             float haftSize = size / 2;

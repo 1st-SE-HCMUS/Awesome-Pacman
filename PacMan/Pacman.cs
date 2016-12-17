@@ -29,7 +29,7 @@ namespace PacMan
         {
             Graphics g = e.Graphics;
             manager.drawMap(g);
-            pacman.UpdatePos(g);
+            pacman.updatePos(g);
         }
 
         private void Pacman_KeyDown(object sender, KeyEventArgs e)
@@ -41,7 +41,7 @@ namespace PacMan
 
         private void timerRefresh(object sender, EventArgs e)
         {
-            pacman.ChangeDirection();
+            pacman.behave();
             Invalidate();
         }
 
