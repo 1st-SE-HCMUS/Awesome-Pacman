@@ -25,7 +25,17 @@ namespace PacMan
 
             
             Character_Pacman pacman = new Character_Pacman();
+            Character_Enemy_Blue blue = new Character_Enemy_Blue(new Point(15, 14));
+            Character_Enemy_Red red = new Character_Enemy_Red(new Point(18, 14));
+            Character_Enemy_Pink pink = new Character_Enemy_Pink(new Point(21, 14));
+            Character_Enemy_Orange orange = new Character_Enemy_Orange(new Point(5, 17));
+
+            listCharacter.Add(blue);
+            listCharacter.Add(red);
+            listCharacter.Add(pink);
+            listCharacter.Add(orange);
             listCharacter.Add(pacman);
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)

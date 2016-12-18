@@ -26,6 +26,7 @@ namespace PacMan
         /// </summary>
         public Character()
         {
+            addSprite();
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
         public Character(Point posMap)
@@ -33,8 +34,6 @@ namespace PacMan
             PosMap = posMap;
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
-
-        abstract protected int addSprite();
 
         /// <summary>
         /// convert position in map(has bounds) to position in graphic
@@ -56,9 +55,7 @@ namespace PacMan
             int i = (int)Math.Round((posY - CONST.HAFT_SIZE_MAP_BLOCK - CONST.MAP_TOP_LEFT_Y) / CONST.SIZE_MAP_BLOCK);
 
             return new Point(i, j);
-        }
-
-        abstract public int behave();
+        }     
         
         protected int changeDirection(DIRECTION direction)
         {
@@ -173,10 +170,10 @@ namespace PacMan
         virtual public void updatePos(Graphics g)
         {
             //PointF pos = PosMapToGraphic(PosMap.X, PosMap.Y);
-            g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X + 1, PosMap.Y));
-            g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X - 1, PosMap.Y));
-            g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y + 1));
-            g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1));
+            //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X + 1, PosMap.Y));
+            //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X - 1, PosMap.Y));
+            //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y + 1));
+            //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1));
 
             
             move();
@@ -187,9 +184,36 @@ namespace PacMan
         {
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
+
+        abstract protected int addSprite();
+        abstract public int behave();
         virtual public int animate(Graphics g)
         {
+            PointF drawPoint = new PointF(PosGraph.X - CONST.sizeSprite / 2, PosGraph.Y - CONST.sizeSprite / 2);
 
+            switch (CurrDirection)
+            {
+                case DIRECTION.Left:
+                    {
+                        SpriteAct[0].draw(g, drawPoint);
+                        break;
+                    }
+                case DIRECTION.Right:
+                    {
+                        SpriteAct[1].draw(g, drawPoint);
+                        break;
+                    }
+                case DIRECTION.Up:
+                    {
+                        SpriteAct[2].draw(g, drawPoint);
+                        break;
+                    }
+                case DIRECTION.Down:
+                    {
+                        SpriteAct[3].draw(g, drawPoint);
+                        break;
+                    }
+            }
             return 0;
         }
         

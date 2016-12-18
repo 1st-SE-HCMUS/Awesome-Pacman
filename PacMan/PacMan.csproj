@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="Character_Enemy.cs" />
     <Compile Include="CONST.cs" />
     <Compile Include="Pacman.cs">
       <SubType>Form</SubType>
