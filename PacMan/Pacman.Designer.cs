@@ -29,14 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer_Refresh_Graphic = new System.Windows.Forms.Timer(this.components);
+            this.timer_Sprite_Animation_Speed = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer1
+            // timer_Refresh_Graphic
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 50;
-            this.timer1.Tick += new System.EventHandler(this.timerRefresh);
+            this.timer_Refresh_Graphic.Enabled = true;
+            this.timer_Refresh_Graphic.Interval = 50;
+            this.timer_Refresh_Graphic.Tick += new System.EventHandler(this.timerRefresh);
+            // 
+            // timer_Sprite_Animation_Speed
+            // 
+            this.timer_Sprite_Animation_Speed.Enabled = true;
+            this.timer_Sprite_Animation_Speed.Interval = 30;
+            this.timer_Sprite_Animation_Speed.Tick += new System.EventHandler(this.timer_Sprite_Animation_Speed_Tick);
             // 
             // Pacman
             // 
@@ -57,7 +64,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer_Refresh_Graphic;
+        private System.Windows.Forms.Timer timer_Sprite_Animation_Speed;
 
     }
 }

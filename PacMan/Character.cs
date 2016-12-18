@@ -11,6 +11,9 @@ namespace PacMan
     {
         protected Point PosMap = new Point(5, 2); // current position in map(has bounds)
         protected PointF PosGraph; // current position in graphic
+
+        protected List<SpriteControl> SpriteAct;
+
         protected enum STATE { Alive, Died }
         protected enum DIRECTION { Left, Right, Up, Down }
 
@@ -30,6 +33,8 @@ namespace PacMan
             PosMap = posMap;
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
+
+        abstract protected int addSprite();
 
         /// <summary>
         /// convert position in map(has bounds) to position in graphic
@@ -175,13 +180,19 @@ namespace PacMan
 
             
             move();
-            Manager.drawSolidSquare(g, Brushes.Yellow, CONST.SIZE_MAP_BLOCK, PosGraph.X, PosGraph.Y);
+            //Manager.drawSolidSquare(g, Brushes.Yellow, CONST.SIZE_MAP_BLOCK, PosGraph.X, PosGraph.Y);
         }
 
         private void adjustPos()
         {
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
+        virtual public int animate(Graphics g)
+        {
+
+            return 0;
+        }
+        
     }
     
 }

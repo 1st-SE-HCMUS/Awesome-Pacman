@@ -105,6 +105,25 @@ namespace PacMan
             }
         }
 
+
+        public void runInPaint(Graphics g, List<Character> character)
+        {
+            drawMap(g);
+            foreach(Character _character in character)
+            {
+                _character.updatePos(g);
+                _character.animate(g);
+
+            }
+        }
+
+        public void characterBehavior(List<Character> character)
+        {
+            foreach (Character _character in character)
+            {
+                _character.behave();
+            }
+        }
         //for testing
         static public void drawSolidSquare(Graphics g, Brush brush, float size, float centerX, float centerY)
         {

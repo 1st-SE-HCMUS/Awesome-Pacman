@@ -16,20 +16,22 @@ namespace PacMan
     public partial class Pacman : Form
     {
         Manager manager = new Manager();
-        PacmanControl pacman = new PacmanControl();
-
+        List<Character> listCharacter = new List<Character>();
+        
         public Pacman()
         {
             InitializeComponent();
             manager.readFileMap();
+
             
+            Character_Pacman pacman = new Character_Pacman();
+            listCharacter.Add(pacman);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            manager.drawMap(g);
-            pacman.updatePos(g);
+            manager.runInPaint(g, listCharacter);
         }
 
         private void Pacman_KeyDown(object sender, KeyEventArgs e)
@@ -41,8 +43,12 @@ namespace PacMan
 
         private void timerRefresh(object sender, EventArgs e)
         {
-            pacman.behave();
+            manager.characterBehavior(listCharacter);
             Invalidate();
+        }
+
+        private void timer_Sprite_Animation_Speed_Tick(object sender, EventArgs e)
+        {
         }
 
         

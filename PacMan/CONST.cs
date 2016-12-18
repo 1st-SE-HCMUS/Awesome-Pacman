@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PacMan
-{
+{ 
     static class CONST
     {
         public const char WALL_CHAR = '+';
@@ -17,5 +18,6 @@ namespace PacMan
         public const float HAFT_SIZE_MAP_BLOCK = SIZE_MAP_BLOCK / 2 + 0.001f;
         public const float MAP_TOP_LEFT_X = 50; 
         public const float MAP_TOP_LEFT_Y = 50;
+        public const int sizeSprite = 20;
     }
 }
