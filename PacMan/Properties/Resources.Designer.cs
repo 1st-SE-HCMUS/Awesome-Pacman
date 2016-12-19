@@ -440,9 +440,9 @@ namespace PacMan.Properties {
         ///++++++ ++ ++++++++ ++ ++++++
         ///   [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string PacMan_Map {
+        internal static string pacman_map {
             get {
-                return ResourceManager.GetString("PacMan_Map", resourceCulture);
+                return ResourceManager.GetString("pacman_map", resourceCulture);
             }
         }
         

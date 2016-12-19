@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
+
 
 namespace PacMan
 {
@@ -32,7 +35,8 @@ namespace PacMan
         //private
         private int readFileMap(ref List<string> mapDataWithBound)
         {
-            MapData = System.IO.File.ReadAllLines(Properties.Resources.PacMan_Map);
+            string resource_data = Properties.Resources.pacman_map;
+            MapData = resource_data.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
 
             if (MapData.Length == 0)
