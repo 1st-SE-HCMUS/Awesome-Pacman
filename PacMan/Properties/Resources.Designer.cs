@@ -421,6 +421,32 @@ namespace PacMan.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ++++++++++++++++++++++++++++
+        ///++++++++++++++++++++++++++++
+        ///++++++++++++++++++++++++++++
+        ///++++++++++++++++++++++++++++
+        ///+            ++            +
+        ///+ ++++ +++++ ++ +++++ ++++ +
+        ///+ ++++ +++++ ++ +++++ ++++ +
+        ///+ ++++ +++++ ++ +++++ ++++ +
+        ///+                          +
+        ///+ ++++ ++ ++++++++ ++ ++++ +
+        ///+ ++++ ++ ++++++++ ++ ++++ +
+        ///+      ++    ++    ++      +
+        ///++++++ +++++ ++ +++++ ++++++
+        ///++++++ +++++ ++ +++++ ++++++
+        ///++++++ ++          ++ ++++++
+        ///++++++ ++ +++  +++ ++ ++++++
+        ///++++++ ++ ++++++++ ++ ++++++
+        ///   [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PacMan_Map {
+            get {
+                return ResourceManager.GetString("PacMan_Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pink__1_ {

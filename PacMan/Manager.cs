@@ -32,7 +32,7 @@ namespace PacMan
         //private
         private int readFileMap(ref List<string> mapDataWithBound)
         {
-            MapData = System.IO.File.ReadAllLines(CONST.PATH_FILE_MAP);
+            MapData = System.IO.File.ReadAllLines(Properties.Resources.PacMan_Map);
 
 
             if (MapData.Length == 0)
