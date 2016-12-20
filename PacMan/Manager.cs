@@ -23,17 +23,18 @@ namespace PacMan
         /// 1 : Map data is wrong
         /// 0 : Fine
         /// </returns>
-        public int readFileMap()
+        public int ReadFileMap()
         {
-            return readFileMap(ref MapDataWithBound);
+            return ReadFileMap(ref MapDataWithBound);
         }
-        public void drawMap(Graphics g)
+
+        public void DrawMap(Graphics g)
         {
-            drawMap(g, MapDataWithBound);
+            DrawMap(g, MapDataWithBound);
         }
 
         //private
-        private int readFileMap(ref List<string> mapDataWithBound)
+        private int ReadFileMap(ref List<string> mapDataWithBound)
         {
             string resource_data = Properties.Resources.pacman_map;
             MapData = resource_data.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
@@ -58,21 +59,21 @@ namespace PacMan
 
             foreach (string element in MapData)
             {
-                mapDataWithBound.Add(CONST.BOUND_CHAR + element + CONST.BOUND_CHAR);
+                mapDataWithBound.Add(Constant.BoundChar + element + Constant.BoundChar);
             }
 
             //create string for top and bottom bound
             string TopBound = "";
             for (int i = 0; i < realMapWidth + 2; i++)
             {
-                TopBound += CONST.BOUND_CHAR;
+                TopBound += Constant.BoundChar;
             }
             //Add top and bottom bound to mapDataWithBound
             mapDataWithBound.Insert(0, TopBound);
             mapDataWithBound.Add(TopBound);
             return 0;
         }
-        private void drawMap(Graphics g, List<string> mapDataWithBound)
+        private void DrawMap(Graphics g, List<string> mapDataWithBound)
         {
             Pen mapPen = new Pen(Color.SpringGreen, 4f);
             Brush mapBrush = Brushes.Black;
@@ -81,26 +82,26 @@ namespace PacMan
             {
                 for (int j = 1; j < mapDataWithBound[i].Length - 1; j++)
                 {
-                    if (mapDataWithBound[i][j] == CONST.WALL_CHAR)
+                    if (mapDataWithBound[i][j] == Constant.WallChar)
                     {
-                        float posX = j * CONST.SIZE_MAP_BLOCK + CONST.HAFT_SIZE_MAP_BLOCK + CONST.MAP_TOP_LEFT_X;
-                        float posY = i * CONST.SIZE_MAP_BLOCK + CONST.HAFT_SIZE_MAP_BLOCK + CONST.MAP_TOP_LEFT_Y;
+                        float posX = j * Constant.MapBlockSize + Constant.HalfMapBlockSize + Constant.MapTopLeftX;
+                        float posY = i * Constant.MapBlockSize + Constant.HalfMapBlockSize + Constant.MapTopLeftY;
 
-                        if (mapDataWithBound[i][j - 1] == CONST.WALL_CHAR)//haft line to the left
+                        if (mapDataWithBound[i][j - 1] == Constant.WallChar)//haft line to the left
                         {
-                            g.DrawLine(mapPen, posX, posY, posX - CONST.HAFT_SIZE_MAP_BLOCK, posY);
+                            g.DrawLine(mapPen, posX, posY, posX - Constant.HalfMapBlockSize, posY);
                         }
-                        if (mapDataWithBound[i][j + 1] == CONST.WALL_CHAR)//haft line to the right
+                        if (mapDataWithBound[i][j + 1] == Constant.WallChar)//haft line to the right
                         {
-                            g.DrawLine(mapPen, posX, posY, posX + CONST.HAFT_SIZE_MAP_BLOCK, posY);
+                            g.DrawLine(mapPen, posX, posY, posX + Constant.HalfMapBlockSize, posY);
                         }
-                        if (mapDataWithBound[i - 1][j] == CONST.WALL_CHAR)//haft line upward
+                        if (mapDataWithBound[i - 1][j] == Constant.WallChar)//haft line upward
                         {
-                            g.DrawLine(mapPen, posX, posY, posX, posY - CONST.HAFT_SIZE_MAP_BLOCK);
+                            g.DrawLine(mapPen, posX, posY, posX, posY - Constant.HalfMapBlockSize);
                         }
-                        if (mapDataWithBound[i + 1][j] == CONST.WALL_CHAR)//haft line downward
+                        if (mapDataWithBound[i + 1][j] == Constant.WallChar)//haft line downward
                         {
-                            g.DrawLine(mapPen, posX, posY, posX, posY + CONST.HAFT_SIZE_MAP_BLOCK);
+                            g.DrawLine(mapPen, posX, posY, posX, posY + Constant.HalfMapBlockSize);
                         }
 
 
@@ -110,26 +111,26 @@ namespace PacMan
         }
 
 
-        public void runInPaint(Graphics g, List<Character> character)
+        public void RunInPaint(Graphics g, List<Character> characterList)
         {
-            drawMap(g);
-            foreach(Character _character in character)
+            DrawMap(g);
+            foreach(Character character in characterList)
             {
-                _character.updatePos(g);
-                _character.animate(g);
+                character.UpdatePos(g);
+                character.Animate(g);
 
             }
         }
 
-        public void characterBehavior(List<Character> character)
+        public void CharacterBehavior(List<Character> characterList)
         {
-            foreach (Character _character in character)
+            foreach (Character character in characterList)
             {
-                _character.behave();
+                character.Behave();
             }
         }
         //for testing
-        static public void drawSolidSquare(Graphics g, Brush brush, float size, float centerX, float centerY)
+        static public void DrawSolidSquare(Graphics g, Brush brush, float size, float centerX, float centerY)
         {
             float haftSize = size / 2;
             g.FillRectangle(brush, centerX - haftSize, centerY - haftSize, size, size);
@@ -142,10 +143,10 @@ namespace PacMan
         /// <param name="p1">Point 1</param>
         /// <param name="p2">Point 2</param>
         /// <returns>1 if dist1>dist2; -1 if <; 0 if == </returns>
-        static public int compareDistance(PointF p0, PointF p1, PointF p2)
+        static public int CompareDistance(PointF p0, PointF p1, PointF p2)
         {
-            double dist1 = getDistance(p0, p1);
-            double dist2 = getDistance(p0, p2);
+            double dist1 = GetDistance(p0, p1);
+            double dist2 = GetDistance(p0, p2);
 
             if(dist1 >dist2)
             {
@@ -158,7 +159,7 @@ namespace PacMan
             return 0;
         }
 
-        static public double getDistance(PointF p1, PointF p2)
+        static public double GetDistance(PointF p1, PointF p2)
         {
            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
         }

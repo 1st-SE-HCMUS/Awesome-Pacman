@@ -1,6 +1,6 @@
 ﻿namespace PacMan
 {
-    partial class Pacman
+    partial class MainGame
     {
         /// <summary>
         /// Required designer variable.

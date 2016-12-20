@@ -14,11 +14,11 @@ namespace PacMan
 
         protected List<SpriteControl> SpriteAct;
 
-        protected enum STATE { Alive, Died }
-        protected enum DIRECTION { Left, Right, Up, Down }
+        protected enum CharacterState { Alive, Died }
+        protected enum Direction { Left, Right, Up, Down }
 
-        protected STATE State;
-        protected DIRECTION CurrDirection = DIRECTION.Right;
+        protected CharacterState State;
+        protected Direction CurrDirection = Direction.Right;
         protected float Speed = 6f;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace PacMan
         /// </summary>
         public Character()
         {
-            addSprite();
+            AddSprite();
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
         public Character(Point posMap)
@@ -42,70 +42,70 @@ namespace PacMan
         protected PointF PosMapToGraphic(int i, int j)
         {
             PointF posGraph = new PointF();
-            posGraph.X = j * CONST.SIZE_MAP_BLOCK + CONST.HAFT_SIZE_MAP_BLOCK + CONST.MAP_TOP_LEFT_X;
-            posGraph.Y = i * CONST.SIZE_MAP_BLOCK + CONST.HAFT_SIZE_MAP_BLOCK + CONST.MAP_TOP_LEFT_Y;
+            posGraph.X = j * Constant.MapBlockSize + Constant.HalfMapBlockSize + Constant.MapTopLeftX;
+            posGraph.Y = i * Constant.MapBlockSize + Constant.HalfMapBlockSize + Constant.MapTopLeftY;
 
             return posGraph;
         }
         protected Point PosGraphicToMap(float posX, float posY)
         {
             //Point closestPosMap = PosMap;
-            //double minDistance = Manager.getDistance(PosMap, new PointF(posX, posY));
-            int j = (int)Math.Round((posX - CONST.HAFT_SIZE_MAP_BLOCK - CONST.MAP_TOP_LEFT_X) / CONST.SIZE_MAP_BLOCK);
-            int i = (int)Math.Round((posY - CONST.HAFT_SIZE_MAP_BLOCK - CONST.MAP_TOP_LEFT_Y) / CONST.SIZE_MAP_BLOCK);
+            //double minDistance = Manager.GetDistance(PosMap, new PointF(posX, posY));
+            int j = (int)Math.Round((posX - Constant.HalfMapBlockSize - Constant.MapTopLeftX) / Constant.MapBlockSize);
+            int i = (int)Math.Round((posY - Constant.HalfMapBlockSize - Constant.MapTopLeftY) / Constant.MapBlockSize);
 
             return new Point(i, j);
         }     
         
-        protected int changeDirection(DIRECTION direction)
+        protected int ChangeDirection(Direction direction)
         {
-            switch(direction)
+            switch (direction)
             {
-                case DIRECTION.Left:
+                case Direction.Left:
                     {
-                        if (CurrDirection != DIRECTION.Left)
+                        if (CurrDirection != Direction.Left)
                         {
-                            if (Manager.MapDataWithBound[PosMap.X][PosMap.Y - 1] != CONST.WALL_CHAR)
+                            if (Manager.MapDataWithBound[PosMap.X][PosMap.Y - 1] != Constant.WallChar)
                             {
-                                adjustPos();
-                                CurrDirection = DIRECTION.Left;
+                                AdjustPos();
+                                CurrDirection = Direction.Left;
                             }
                         }
-                        
+
                         break;
                     }
-                case DIRECTION.Right:
+                case Direction.Right:
                     {
-                        if (CurrDirection != DIRECTION.Right)
+                        if (CurrDirection != Direction.Right)
                         {
-                            if (Manager.MapDataWithBound[PosMap.X][PosMap.Y + 1] != CONST.WALL_CHAR)
+                            if (Manager.MapDataWithBound[PosMap.X][PosMap.Y + 1] != Constant.WallChar)
                             {
-                                adjustPos();
-                                CurrDirection = DIRECTION.Right;
-                            }
-                        }
-                        break;
-                    }
-                case DIRECTION.Up:
-                    {
-                        if (CurrDirection != DIRECTION.Up)
-                        {
-                            if (Manager.MapDataWithBound[PosMap.X - 1][PosMap.Y] != CONST.WALL_CHAR)
-                            {
-                                adjustPos();
-                                CurrDirection = DIRECTION.Up;
+                                AdjustPos();
+                                CurrDirection = Direction.Right;
                             }
                         }
                         break;
                     }
-                case DIRECTION.Down:
+                case Direction.Up:
                     {
-                        if (CurrDirection != DIRECTION.Down)
+                        if (CurrDirection != Direction.Up)
                         {
-                            if (Manager.MapDataWithBound[PosMap.X + 1][PosMap.Y] != CONST.WALL_CHAR)
+                            if (Manager.MapDataWithBound[PosMap.X - 1][PosMap.Y] != Constant.WallChar)
                             {
-                                adjustPos();
-                                CurrDirection = DIRECTION.Down;
+                                AdjustPos();
+                                CurrDirection = Direction.Up;
+                            }
+                        }
+                        break;
+                    }
+                case Direction.Down:
+                    {
+                        if (CurrDirection != Direction.Down)
+                        {
+                            if (Manager.MapDataWithBound[PosMap.X + 1][PosMap.Y] != Constant.WallChar)
+                            {
+                                AdjustPos();
+                                CurrDirection = Direction.Down;
                             }
                         }
                         break;
@@ -113,34 +113,36 @@ namespace PacMan
             }
             return 0;
         }
-        virtual protected void move()
+
+
+        virtual protected void Move()
         {
             switch(CurrDirection)
             {
-                case DIRECTION.Left:
+                case Direction.Left:
                     {
-                        if (Manager.MapDataWithBound[PosMap.X][PosMap.Y - 1] == CONST.ROAD_CHAR
-                            || Manager.getDistance(PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1)) >= CONST.SIZE_MAP_BLOCK + Speed)
+                        if (Manager.MapDataWithBound[PosMap.X][PosMap.Y - 1] == Constant.RoadChar
+                            || Manager.GetDistance(PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1)) >= Constant.MapBlockSize + Speed)
                         {
                             //PosMap.Y--;
                             PosGraph.X -= Speed;
                         }
                         break;
                     }
-                case DIRECTION.Right:
+                case Direction.Right:
                     {
-                        if (Manager.MapDataWithBound[PosMap.X][PosMap.Y + 1] == CONST.ROAD_CHAR
-                            || Manager.getDistance(PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y + 1)) >= CONST.SIZE_MAP_BLOCK + Speed)
+                        if (Manager.MapDataWithBound[PosMap.X][PosMap.Y + 1] == Constant.RoadChar
+                            || Manager.GetDistance(PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y + 1)) >= Constant.MapBlockSize + Speed)
                         {
                             //PosMap.Y++;
                             PosGraph.X += Speed;
                         }
                         break;
                     }
-                case DIRECTION.Up:
+                case Direction.Up:
                     {
-                        if (Manager.MapDataWithBound[PosMap.X - 1][PosMap.Y] == CONST.ROAD_CHAR
-                            || Manager.getDistance(PosGraph, PosMapToGraphic(PosMap.X - 1, PosMap.Y)) >= CONST.SIZE_MAP_BLOCK + Speed)
+                        if (Manager.MapDataWithBound[PosMap.X - 1][PosMap.Y] == Constant.RoadChar
+                            || Manager.GetDistance(PosGraph, PosMapToGraphic(PosMap.X - 1, PosMap.Y)) >= Constant.MapBlockSize + Speed)
                         {
                             //PosMap.X--;
                             PosGraph.Y -= Speed;
@@ -148,10 +150,10 @@ namespace PacMan
                         }
                         break;
                     }
-                case DIRECTION.Down:
+                case Direction.Down:
                     {
-                        if (Manager.MapDataWithBound[PosMap.X + 1][PosMap.Y] == CONST.ROAD_CHAR
-                            || Manager.getDistance(PosGraph, PosMapToGraphic(PosMap.X + 1, PosMap.Y)) >= CONST.SIZE_MAP_BLOCK + Speed)
+                        if (Manager.MapDataWithBound[PosMap.X + 1][PosMap.Y] == Constant.RoadChar
+                            || Manager.GetDistance(PosGraph, PosMapToGraphic(PosMap.X + 1, PosMap.Y)) >= Constant.MapBlockSize + Speed)
                         {
                             //PosMap.X++;
                             PosGraph.Y += Speed;
@@ -167,7 +169,7 @@ namespace PacMan
         /// <summary>
         /// Update current position and redraw
         /// </summary>
-        virtual public void updatePos(Graphics g)
+        virtual public void UpdatePos(Graphics g)
         {
             //PointF pos = PosMapToGraphic(PosMap.X, PosMap.Y);
             //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X + 1, PosMap.Y));
@@ -176,39 +178,39 @@ namespace PacMan
             //g.DrawLine(Pens.Red, PosGraph, PosMapToGraphic(PosMap.X, PosMap.Y - 1));
 
             
-            move();
-            //Manager.drawSolidSquare(g, Brushes.Yellow, CONST.SIZE_MAP_BLOCK, PosGraph.X, PosGraph.Y);
+            Move();
+            //Manager.DrawSolidSquare(g, Brushes.Yellow, CONST.MapBlockSize, PosGraph.X, PosGraph.Y);
         }
 
-        private void adjustPos()
+        private void AdjustPos()
         {
             PosGraph = PosMapToGraphic(PosMap.X, PosMap.Y);
         }
 
-        abstract protected int addSprite();
-        abstract public int behave();
-        virtual public int animate(Graphics g)
+        abstract protected int AddSprite();
+        abstract public int Behave();
+        virtual public int Animate(Graphics g)
         {
-            PointF drawPoint = new PointF(PosGraph.X - CONST.sizeSprite / 2, PosGraph.Y - CONST.sizeSprite / 2);
+            PointF drawPoint = new PointF(PosGraph.X - Constant.SpriteSize / 2, PosGraph.Y - Constant.SpriteSize / 2);
 
             switch (CurrDirection)
             {
-                case DIRECTION.Left:
+                case Direction.Left:
                     {
                         SpriteAct[0].draw(g, drawPoint);
                         break;
                     }
-                case DIRECTION.Right:
+                case Direction.Right:
                     {
                         SpriteAct[1].draw(g, drawPoint);
                         break;
                     }
-                case DIRECTION.Up:
+                case Direction.Up:
                     {
                         SpriteAct[2].draw(g, drawPoint);
                         break;
                     }
-                case DIRECTION.Down:
+                case Direction.Down:
                     {
                         SpriteAct[3].draw(g, drawPoint);
                         break;

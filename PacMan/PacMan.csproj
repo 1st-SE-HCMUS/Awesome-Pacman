@@ -45,21 +45,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
-    <Compile Include="Character_Enemy.cs" />
-    <Compile Include="CONST.cs" />
-    <Compile Include="Pacman.cs">
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Constant.cs" />
+    <Compile Include="MainGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pacman.Designer.cs">
-      <DependentUpon>Pacman.cs</DependentUpon>
+    <Compile Include="MainGame.Designer.cs">
+      <DependentUpon>MainGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs" />
-    <Compile Include="Character_Pacman.cs" />
+    <Compile Include="Pacman.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpriteControl.cs" />
-    <EmbeddedResource Include="Pacman.resx">
-      <DependentUpon>Pacman.cs</DependentUpon>
+    <EmbeddedResource Include="MainGame.resx">
+      <DependentUpon>MainGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
