@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    class SpriteControl
+    class CharacterSprite
     {
-        List<Bitmap> _ListImage;
+        public const int Size = 20;
+        private List<Bitmap> _ListImage;
      
         int CurrSprite;
-        public SpriteControl(List<Bitmap> _listImage)
+        public CharacterSprite(List<Bitmap> _listImage)
         {
             ListImage = _listImage;
             CurrSprite = 0;

@@ -12,53 +12,32 @@ using System.Runtime.InteropServices;
 
 namespace PacMan
 {
-
     public partial class MainGame : Form
     {
-        Manager manager = new Manager();
-        List<Character> listCharacter = new List<Character>();
+        Graphics grs;
+        GameManager manager;
+       
         
         public MainGame()
         {
             InitializeComponent();
-            manager.ReadFileMap();
-
-            
-            Pacman pacman = new Pacman();
-            EnemyBlue blue = new EnemyBlue(new Point(15, 14));
-            EnemyRed red = new EnemyRed(new Point(18, 14));
-            EnemyPink pink = new EnemyPink(new Point(21, 14));
-            EnemyOrange orange = new EnemyOrange(new Point(5, 17));
-
-            listCharacter.Add(blue);
-            listCharacter.Add(red);
-            listCharacter.Add(pink);
-            listCharacter.Add(orange);
-            listCharacter.Add(pacman);
-
+            manager = new GameManager();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            manager.RunInPaint(g, listCharacter);
+            manager.OnPaint(e.Graphics);
         }
 
-        private void Pacman_KeyDown(object sender, KeyEventArgs e)
-        {
-            
-        }
+        
 
         
 
         private void timerRefresh(object sender, EventArgs e)
         {
-            manager.CharacterBehavior(listCharacter);
+            manager.CharacterBehavior();
             Invalidate();
-        }
-
-        private void timer_Sprite_Animation_Speed_Tick(object sender, EventArgs e)
-        {
         }
     }
 }

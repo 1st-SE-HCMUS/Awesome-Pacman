@@ -44,20 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="Constant.cs" />
+    <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\CyanGhost.cs" />
+    <Compile Include="Model\Enemy.cs" />
+    <Compile Include="Utils\Constant.cs" />
+    <Compile Include="Model\OrangeGhost.cs" />
+    <Compile Include="Model\RedGhost.cs" />
     <Compile Include="MainGame.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainGame.Designer.cs">
       <DependentUpon>MainGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manager.cs" />
-    <Compile Include="Pacman.cs" />
+    <Compile Include="Controller\GameManager.cs" />
+    <Compile Include="View\GameMap.cs" />
+    <Compile Include="Model\Pacman.cs" />
+    <Compile Include="Model\PinkGhost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpriteControl.cs" />
+    <Compile Include="View\CharacterSprite.cs" />
     <EmbeddedResource Include="MainGame.resx">
       <DependentUpon>MainGame.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,172 +90,172 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\down %281%29.png" />
+    <None Include="Resources\Sprite\Pacman\down %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\down %282%29.png" />
+    <None Include="Resources\Sprite\Pacman\down %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\full.png" />
+    <None Include="Resources\Sprite\Pacman\full.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\left %281%29.png" />
+    <None Include="Resources\Sprite\Pacman\left %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\left %282%29.png" />
+    <None Include="Resources\Sprite\Pacman\left %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\right %281%29.png" />
+    <None Include="Resources\Sprite\Pacman\right %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\right %282%29.png" />
+    <None Include="Resources\Sprite\Pacman\right %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\up %281%29.png" />
+    <None Include="Resources\Sprite\Pacman\up %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\up %282%29.png" />
+    <None Include="Resources\Sprite\Pacman\up %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\afraid %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\afraid %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\afraid %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\afraid %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\afraid blink %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\afraid blink %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\afraid blink %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\afraid blink %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %283%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %284%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %285%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %286%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %287%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %287%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\blue %288%29.png" />
+    <None Include="Resources\Sprite\Enemy\blue %288%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %283%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %284%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %285%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %286%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %287%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %287%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\orange %288%29.png" />
+    <None Include="Resources\Sprite\Enemy\orange %288%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %283%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %284%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %285%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %286%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %287%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %287%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\pink %288%29.png" />
+    <None Include="Resources\Sprite\Enemy\pink %288%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %281%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %282%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %283%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %284%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %285%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %286%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %287%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %287%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Enemy\red %288%29.png" />
+    <None Include="Resources\Sprite\Enemy\red %288%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %281%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %282%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %282%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %283%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %284%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %284%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %285%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %285%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %286%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %286%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %287%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %287%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %288%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %288%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %289%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %289%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %2810%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %2810%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sprite\Pacman\dead %2811%29.png" />
+    <None Include="Resources\Sprite\Pacman\dead %2811%29.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\pacman_map.txt" />

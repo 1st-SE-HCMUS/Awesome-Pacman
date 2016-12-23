@@ -43,21 +43,20 @@
             // 
             this.timer_Sprite_Animation_Speed.Enabled = true;
             this.timer_Sprite_Animation_Speed.Interval = 30;
-            this.timer_Sprite_Animation_Speed.Tick += new System.EventHandler(this.timer_Sprite_Animation_Speed_Tick);
             // 
-            // Pacman
+            // MainGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(768, 806);
+            this.ClientSize = new System.Drawing.Size(576, 602);
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.Name = "Pacman";
+            this.Name = "MainGame";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Pacman";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Pacman_KeyDown);
             this.ResumeLayout(false);
 
         }
