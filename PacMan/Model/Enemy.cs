@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PacMan.Controller;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,17 +12,149 @@ namespace PacMan
     abstract class Enemy : Character
     {
         protected int Score;
+        protected EnemyMode Mode;
+        /// <summary>
+        /// Character's last performed move. Auxiliary variable to help scene drwiwng process.
+        /// </summary>
+        public Direction lastMove { get; set; }
+
+        public EnemyMode GetMode()
+        {
+            return Mode;
+        }
+        public enum EnemyMode { Scatter, Chase, Pissed}
+        protected Pathfinder pathfinder;
+        private Stack<Direction> pathToPac;
 
         public Enemy()
         {
-            MapPosition = new Point(14, 15);
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
+            MapPosition = new GameMap.Pos(14, 15);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            Mode = EnemyMode.Scatter;
+            pathfinder = new Pathfinder();
         }
 
-        public override int Behave()
+        public void Chase()
         {
+            Mode = EnemyMode.Chase;
+        }
+
+        public void Scatter()
+        {
+            Mode = EnemyMode.Scatter;
+        }
+
+        protected int ChooseWayToGo(GameMap map, GameMap.Pos pacmanPosition)
+        {
+            // Got that bastard!!!
+            if (reachedPacman(map, pacmanPosition))
+            {
+                // set on future respawn position
+                //System.Windows.Forms.MessageBox.Show("Gotcha");
+            }
+            else if(getPathToPac() != null)
+            {
+                Stack<Direction> stack = getPathToPac();
+                Direction dir = getPathToPac().Pop();
+               
+                lastMove = dir;
+
+                if(dir == Direction.Left)
+                {
+                    ChangeDirection(Direction.Left);
+                    Debug.WriteLine("Left");
+                }
+                else if(dir == Direction.Right)
+                {
+                    ChangeDirection(Direction.Right);
+                    Debug.WriteLine("Right");
+                }
+                else if(dir == Direction.Up)
+                {
+                    ChangeDirection(Direction.Up);
+                    Debug.WriteLine("Up");
+                }
+                else if(dir == Direction.Down)
+                {
+                    ChangeDirection(Direction.Down);
+                    Debug.WriteLine("Down");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Error");
+                }
+
+                /*
+                switch (dir)
+                {
+                    case Direction.Left:
+                        ChangeDirection(Direction.Left);
+                        Debug.WriteLine("Left");
+                        //System.Windows.Forms.MessageBox.Show("Left");
+                        break;
+
+                    case Direction.Right:
+                        ChangeDirection(Direction.Right);
+                        Debug.WriteLine("Right");
+                        //System.Windows.Forms.MessageBox.Show("Right");
+                        break;
+
+                    case Direction.Up:
+                        ChangeDirection(Direction.Up);
+                        Debug.WriteLine("Up");
+                        //System.Windows.Forms.MessageBox.Show("Up");
+                        break;
+
+                    case Direction.Down:
+                        ChangeDirection(Direction.Down);
+                        Debug.WriteLine("Down");
+                        //System.Windows.Forms.MessageBox.Show("Down");
+                        break;
+
+                    default:
+                        System.Windows.Forms.MessageBox.Show("Error");
+                        break;
+                }
+                 */ 
+
+                return 1;
+            }
+
             return 0;
-            throw new NotImplementedException();
+        }
+
+        private bool reachedPacman(GameMap map, GameMap.Pos pacmanPos)
+        {
+            if ((MapPosition.X == pacmanPos.X) &&
+                (MapPosition.Y == pacmanPos.Y))
+                return true;
+
+            return calcPathToPac(map, pacmanPos);
+        }
+
+        /*********************************************************************/
+        /* Class Methods */
+        /*********************************************************************/
+        /// <summary>
+        /// Calculates and returns, if possible, best route for ghost to reach pacman.
+        /// </summary>
+        /// <param name="map">Map used in search algorithm.</param>
+        /// <param name="pacpos">Pacman's position in map.</param>
+        public bool calcPathToPac(GameMap map, GameMap.Pos pacpos)
+        {
+            pathToPac = pathfinder.findBestPath(map, this.MapPosition, pacpos);
+
+            if ((pathToPac != null) && (pathToPac.Count != 0))
+                return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Returns Direction stack that represents the best path to reach pacman.
+        /// </summary>
+        public Stack<Direction> getPathToPac()
+        {
+            return pathToPac;
         }
     }
 }

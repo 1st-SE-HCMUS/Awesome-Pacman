@@ -9,10 +9,10 @@ namespace PacMan
 {
     class PinkGhost : Enemy
     {
-        public PinkGhost(Point startPoint)
+        public PinkGhost(GameMap.Pos startPoint)
         {
             MapPosition = startPoint;
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
         }
         protected override int AddSprite()
         {
@@ -42,6 +42,27 @@ namespace PacMan
 
 
             return 0;
+        }
+
+        public override int Behave()
+        {
+            GameManager manager = GameManager.GetInstance();
+            if (Mode == EnemyMode.Chase)
+            {
+                //
+                return ChooseWayToGo(manager.GetMap(), manager.GetPacmanPosition());
+            }
+            else if (Mode == EnemyMode.Scatter)
+            {
+                //Scatter
+                return ChooseWayToGo(manager.GetMap(), new GameMap.Pos(35, 2));
+            }
+            // Fuck..., no way to pacman
+            else
+            {
+                //Pissed mode
+                return 0;
+            }
         }
     }
 }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer_Refresh_Graphic = new System.Windows.Forms.Timer(this.components);
             this.timer_Sprite_Animation_Speed = new System.Windows.Forms.Timer(this.components);
+            this.timer_game = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timer_Refresh_Graphic
@@ -44,6 +45,11 @@
             this.timer_Sprite_Animation_Speed.Enabled = true;
             this.timer_Sprite_Animation_Speed.Interval = 30;
             // 
+            // timer_game
+            // 
+            this.timer_game.Interval = 1000;
+            this.timer_game.Tick += new System.EventHandler(this.timer_game_Tick);
+            // 
             // MainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -51,11 +57,12 @@
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(576, 602);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainGame";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Pacman";
+            this.Load += new System.EventHandler(this.MainGame_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.ResumeLayout(false);
 
@@ -65,6 +72,7 @@
 
         private System.Windows.Forms.Timer timer_Refresh_Graphic;
         private System.Windows.Forms.Timer timer_Sprite_Animation_Speed;
+        private System.Windows.Forms.Timer timer_game;
 
     }
 }

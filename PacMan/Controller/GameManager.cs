@@ -11,8 +11,33 @@ namespace PacMan
     {
         private string[] MapData;
         private static List<String> mapDataWithBound;
-        private List<Character> ListCharacter;
+        private Pacman PacMan;
+        private List<Character> ListEnemy;
         private GameMap Map;
+        private int ScatterTime;
+        private int ChaseTime;
+        private int Level;
+        private int GameModeCount;
+
+        private static GameManager instance = null;
+
+        public static GameManager GetInstance()
+        {
+            if (instance == null)
+                instance = new GameManager();
+            
+            return instance;
+        }
+
+        public GameMap.Pos GetPacmanPosition()
+        {
+            return PacMan.GetPosition();
+        }
+
+        public GameMap GetMap()
+        {
+            return Map;
+        }
 
         public static List<String> MapDataWithBound
         {
@@ -27,9 +52,18 @@ namespace PacMan
                 mapDataWithBound = value;
             }
         }
-        
 
-        public GameManager()
+        public int GetGameModeTime()
+        {
+            if (((Enemy)ListEnemy[0]).GetMode() == Enemy.EnemyMode.Scatter)
+            {
+                return ScatterTime;
+            }
+
+            return ChaseTime;
+        } 
+
+        private GameManager()
         {
             mapDataWithBound = ReadFileMap();
             if (mapDataWithBound == null)
@@ -40,30 +74,34 @@ namespace PacMan
             else
                 Map = new GameMap(mapDataWithBound);
 
-            ListCharacter = new List<Character>();
-            ListCharacter.Add(new CyanGhost(new Point(15, 14)));
-            ListCharacter.Add(new RedGhost(new Point(18, 14)));
-            ListCharacter.Add(new PinkGhost(new Point(21, 14)));
-            ListCharacter.Add(new OrangeGhost(new Point(5, 17)));
-            ListCharacter.Add(new Pacman());
+            ListEnemy = new List<Character>();
+            ListEnemy.Add(new CyanGhost(new GameMap.Pos(7, 2)));
+            ListEnemy.Add(new RedGhost(new GameMap.Pos(18, 14)));
+            ListEnemy.Add(new PinkGhost(new GameMap.Pos(21, 14)));
+            ListEnemy.Add(new OrangeGhost(new GameMap.Pos(5, 17)));
+            PacMan = new Pacman();
+
+            ScatterTime = 7;
+            ChaseTime = 20;
+            GameModeCount = 0;
         }
 
         public void addCharacter(Character c)
         {
             if (c != null)
-                ListCharacter.Add(c);
+                ListEnemy.Add(c);
         }
 
         public void removeCharacter(Character c)
         {
             if (c != null)
-                ListCharacter.Remove(c);
+                ListEnemy.Remove(c);
         }
                         
         
         public void DrawMap(Graphics g)
         {
-            Map.Draw(g, ListCharacter);
+            Map.Draw(g, ListEnemy, PacMan);
         }
 
         /// <summary>
@@ -109,15 +147,16 @@ namespace PacMan
 
         public void OnPaint(Graphics g)
         {
-            Map.Draw(g, ListCharacter);
+            Map.Draw(g, ListEnemy, PacMan);
         }
 
         public void CharacterBehavior()
         {
-            foreach (Character character in ListCharacter)
+            foreach (Character character in ListEnemy)
             {
                 character.Behave();
             }
+            PacMan.Behave();
         }
 
         //for testing
@@ -132,8 +171,8 @@ namespace PacMan
         /// Compare distance from root point to two others point
         /// </summary>
         /// <param name="p0">Root point</param>
-        /// <param name="p1">Point 1</param>
-        /// <param name="p2">Point 2</param>
+        /// <param name="p1">GameMap.Pos 1</param>
+        /// <param name="p2">GameMap.Pos 2</param>
         /// <returns>1 if dist1>dist2; -1 if <; 0 if == </returns>
         static public int CompareDistance(PointF p0, PointF p1, PointF p2)
         {
@@ -154,6 +193,57 @@ namespace PacMan
         public static double GetDistance(PointF p1, PointF p2)
         {
            return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+        }
+
+        public void ChangeGhostMode()
+        {
+            if (GameModeCount <= 3)
+            {
+                if (((Enemy)ListEnemy[0]).GetMode() == Enemy.EnemyMode.Scatter)
+                {
+                    //Change to Chase Mode
+                    foreach (Enemy e in ListEnemy)
+                    {
+                        e.Chase();
+                    }
+                    System.Windows.Forms.MessageBox.Show("Chase begin");
+                }
+                else
+                {
+                    //Change to Scatter Mode
+                    foreach (Enemy e in ListEnemy)
+                    {
+                        e.Scatter();
+                    }
+                    
+
+                    GameModeCount++;
+                    SetGameModeTime();
+                }
+            }
+        }
+
+        private void SetGameModeTime()
+        {
+            if (GameModeCount == 0 || GameModeCount == 1) {
+                ScatterTime = 7;
+                ChaseTime = 20;
+            }
+            else if (GameModeCount == 2)
+            {
+                ScatterTime = 5;
+                ChaseTime = 20;
+            }
+            else if(GameModeCount == 3)
+            {
+                ScatterTime = 5;
+                ChaseTime = 1000;
+            }
+            else
+            {
+                ScatterTime = 0;
+                ChaseTime = 1000;
+            }
         }
     }
 }

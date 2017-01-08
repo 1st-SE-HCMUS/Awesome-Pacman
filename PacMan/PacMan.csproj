@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Pathfinder.cs" />
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\CyanGhost.cs" />
     <Compile Include="Model\Enemy.cs" />

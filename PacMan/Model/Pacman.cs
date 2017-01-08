@@ -49,6 +49,11 @@ namespace PacMan
             return 0;
         }
 
+        public GameMap.Pos GetPosition()
+        {
+            return MapPosition;
+        }
+
         public Pacman()
         {
             AddSprite();

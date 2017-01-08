@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 
 namespace PacMan
@@ -16,12 +17,14 @@ namespace PacMan
     {
         Graphics grs;
         GameManager manager;
+        int gameTickCount = 0;
        
         
         public MainGame()
         {
             InitializeComponent();
-            manager = new GameManager();
+            manager = GameManager.GetInstance();
+            timer_game.Start();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -38,6 +41,25 @@ namespace PacMan
         {
             manager.CharacterBehavior();
             Invalidate();
+        }
+
+        private void timer_game_Tick(object sender, EventArgs e)
+        {
+            gameTickCount++;
+
+            if(gameTickCount >= manager.GetGameModeTime())
+            {
+                manager.ChangeGhostMode();
+                gameTickCount = 0;
+            }
+
+            Debug.WriteLine("Game tick count: " + gameTickCount.ToString());
+        }
+
+        private void MainGame_Load(object sender, EventArgs e)
+        {
+            if (manager == null)
+                manager = GameManager.GetInstance();
         }
     }
 }
