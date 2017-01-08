@@ -9,7 +9,7 @@ namespace PacMan
 {
     abstract class Enemy : Character
     {
-        protected int Score;
+        public int Score = 1500;
 
         public Enemy()
         {

@@ -124,9 +124,6 @@
   <data name="afraid_blink__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sprite\Enemy\afraid blink (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="afraid_blink__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Sprite\Enemy\afraid blink (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="afraid__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sprite\Enemy\afraid (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -288,5 +285,29 @@
   </data>
   <data name="up__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sprite\Pacman\up (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="afraid_blink__1_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sprite\Enemy\afraid (2)2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruit__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fruit (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruit__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fruit (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruit__3_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fruit (3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruit__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fruit (4).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruit__5_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fruit (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yellow_dot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yellow_dot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

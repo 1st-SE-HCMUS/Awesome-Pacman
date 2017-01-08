@@ -11,8 +11,8 @@ E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\bin\Debug\PacMan.exe.config
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.exe
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.pdb
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.csprojResolveAssemblyReference.cache
-E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.Pacman.resources
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.Properties.Resources.resources
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.csproj.GenerateResource.Cache
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\bin\Debug\PacMan.exe
 E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\bin\Debug\PacMan.pdb
+E:\OneDrive\Documents\GitHub\Awesome-Pacman\PacMan\obj\Debug\PacMan.MainGame.resources
