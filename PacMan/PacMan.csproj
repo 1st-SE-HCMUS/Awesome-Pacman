@@ -48,6 +48,7 @@
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\CyanGhost.cs" />
     <Compile Include="Model\Enemy.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Model\OrangeGhost.cs" />
     <Compile Include="Model\RedGhost.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Model\PinkGhost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\CharacterSprite.cs" />
+    <Compile Include="View\Sprite.cs" />
     <EmbeddedResource Include="MainGame.resx">
       <DependentUpon>MainGame.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,6 +261,39 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\pacman_map.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite\Enemy\afraid %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite\Enemy\afraid blink %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite\Enemy\afraid blink %281%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sprite\Enemy\afraid %282%292.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fruit %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fruit %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fruit %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fruit %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fruit %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow_dot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

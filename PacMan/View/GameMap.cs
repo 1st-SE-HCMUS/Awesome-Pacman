@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PacMan.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace PacMan
 
         public const int BlockSize = 15;
         public const float HalfBlockSize = BlockSize / 2 + 0.001f;
-        public const float TopLeftX = 50;
+        public const float TopLeftX = 0;
         public const float TopLeftY = 50;
 
         /// <summary>
@@ -78,8 +79,7 @@ namespace PacMan
         }
 
         private List<string> mapDataWithBound;
-
-
+        
         public GameMap(List<string> mapDataWithBound)
         {
             if (mapDataWithBound != null && mapDataWithBound.Count() > 0)
@@ -102,12 +102,19 @@ namespace PacMan
             else
                 System.Windows.Forms.MessageBox.Show("Map Data is empty!", "Pacman", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
-
-
-        private void DrawMap(Graphics g)
+        
+        public void DrawMap(Graphics g)
         {
             Pen mapPen = new Pen(Color.SpringGreen, 4f);
             Brush mapBrush = Brushes.Black;
+
+            List<Bitmap> yellowDotBmp = new List<Bitmap>();
+            yellowDotBmp.Add(new Bitmap(Properties.Resources.Yellow_dot, Sprite.Size/3, Sprite.Size/3));
+            Item itemYellowDot = new Item(new Sprite(yellowDotBmp));
+
+            List<Bitmap> fruitBmp = new List<Bitmap>();
+            fruitBmp.Add(new Bitmap(Properties.Resources.Fruit__1_, Sprite.Size, Sprite.Size));
+            Item itemFruit = new Item(new Sprite(fruitBmp));
 
             for (int i = 1; i < mapDataWithBound.Count - 1; i++)
             {
@@ -134,14 +141,13 @@ namespace PacMan
                         {
                             g.DrawLine(mapPen, posX, posY, posX, posY + HalfBlockSize);
                         }
-
-
                     }
                 }
             }
         }
 
 
+        /*
         public void Draw(Graphics g, List<Character> characterList, Pacman pacman)
         {
             DrawMap(g);
@@ -149,12 +155,33 @@ namespace PacMan
             {
                 character.UpdatePos();
                 character.Animate(g);
-            }
 
+                if (mapDataWithBound[i][j] == Constant.DotChar)
+                {
+                    itemYellowDot.MapPosition = new Point(i, j);
+                    PointF pos = ToGraphicPosition(itemYellowDot.MapPosition.X, itemYellowDot.MapPosition.Y);
+                    pos.X -= Sprite.Size / 6;
+                    pos.Y -= Sprite.Size / 6;
+                    itemYellowDot.ItemSprite.draw(g, pos);
+                }
+                if (mapDataWithBound[i][j] == Constant.FruitChar)
+                {
+                    itemFruit.MapPosition = new Point(i, j);
+                    PointF pos = ToGraphicPosition(itemFruit.MapPosition.X, itemFruit.MapPosition.Y);
+                    pos.X -= Sprite.Size / 2;
+                    pos.Y -= Sprite.Size / 2;
+                    itemFruit.ItemSprite.draw(g, pos);
+                }
+
+            }
             pacman.UpdatePos();
             pacman.Animate(g);
         }
+         */
 
+            
+    
+        
 
         /// <summary>
         /// convert position in map(has bounds) to position in graphic

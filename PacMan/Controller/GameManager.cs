@@ -1,23 +1,32 @@
-﻿using System;
+﻿using PacMan.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-
+using System.Text;
+using System.Windows.Forms;
 
 namespace PacMan
 {
     
     class GameManager
     {
+        public enum GameStage { Menu, Playing, Win, GameOver};
+        public GameStage CurrentStage = GameStage.Menu;
+        public  int PlayerScore = 0;
+        public int EatedDot = 0;
         private string[] MapData;
         private static List<String> mapDataWithBound;
         private Pacman PacMan;
-        private List<Character> ListEnemy;
+        public List<Character> ListEnemy;
         private GameMap Map;
         private int ScatterTime;
         private int ChaseTime;
         private int Level;
         private int GameModeCount;
+        public int AfraidTime = 3000;
+        public Timer TimerAfraid;
+        public Timer TimerBlink;
 
         private static GameManager instance = null;
 
@@ -38,6 +47,9 @@ namespace PacMan
         {
             return Map;
         }
+
+        
+        
 
         public static List<String> MapDataWithBound
         {
@@ -85,6 +97,11 @@ namespace PacMan
             ChaseTime = 20;
             GameModeCount = 0;
         }
+        
+        public void SetCurrentStage(GameStage stage)
+        {
+            CurrentStage = stage;
+        }
 
         public void addCharacter(Character c)
         {
@@ -99,10 +116,7 @@ namespace PacMan
         }
                         
         
-        public void DrawMap(Graphics g)
-        {
-            Map.Draw(g, ListEnemy, PacMan);
-        }
+                    
 
         /// <summary>
         /// Read map file and create new MapData with bound
@@ -141,17 +155,54 @@ namespace PacMan
             //Add top and bottom bound to mapDataWithBound
             mapDataWithBound.Insert(0, TopBound);
             mapDataWithBound.Add(TopBound);
-            return mapDataWithBound;
+
+            
+
+                        return mapDataWithBound;
         }
 
-
-        public void OnPaint(Graphics g)
+        public void OnPlaying(Graphics g)
         {
-            Map.Draw(g, ListEnemy, PacMan);
+            CountScore();
+            if(EatedDot == 300)//eated all dot (300)
+            {
+                CurrentStage = GameStage.Win;
+            }
+            //draw map, character, item
+            Draw(g, ListEnemy);
         }
 
         public void CharacterBehavior()
-        {
+        {  
+            //check collision with other enemy, destroy object if nessesary
+            for(int i = 0; i < ListEnemy.Count; i++)
+            {
+                if (ListEnemy[i].State == Character.CharacterState.NeedDestroy)
+                {
+                    removeCharacter(ListEnemy[i]);
+                    i--;
+                    break;
+                }
+                //enemies vs pacman
+                if(i!= ListEnemy.Count-1)//not pacman vs its seft
+                    if (ListEnemy[i].DetectingCollision(ListEnemy[ListEnemy.Count-1]))
+                    {
+                        if(ListEnemy[i].State == Character.CharacterState.Afraid 
+                            || ListEnemy[i].State == Character.CharacterState.Blinking)
+                        {
+                            ListEnemy[i].State = Character.CharacterState.NeedDestroy;
+                            //Add score...
+                            i--;
+                            break;
+                        }
+                        if(ListEnemy[i].State == Character.CharacterState.Alive)
+                        {
+                            ListEnemy[ListEnemy.Count - 1].State = Character.CharacterState.Died;
+                        }
+
+                    }
+                
+            }
             foreach (Character character in ListEnemy)
             {
                 character.Behave();
@@ -245,5 +296,63 @@ namespace PacMan
                 ChaseTime = 1000;
             }
         }
+
+        //count and destroy item on map
+        private int CountScore()
+        {
+            GameMap.Pos PacmanPos = PacMan.GetPosition();
+            //detect yellow dots
+            if (mapDataWithBound[PacmanPos.X][PacmanPos.Y] == Constant.DotChar)
+            {
+                EatedDot++;
+                PlayerScore += Constant.YellowDotPoint;
+                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.X]);
+                sb[PacmanPos.Y] = ' ';
+
+                mapDataWithBound[PacmanPos.X] = sb.ToString();
+            }
+
+            //detect fruits
+            if (mapDataWithBound[PacmanPos.X][PacmanPos.Y] == Constant.FruitChar)
+            {
+                PlayerScore += Constant.FruitPoint;
+                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.X]);
+                sb[PacmanPos.Y] = ' ';
+
+                mapDataWithBound[PacmanPos.X] = sb.ToString();
+
+                //change enemies state to afraid
+                for(int i = 0; i < ListEnemy.Count; i++)
+                {
+                    ListEnemy[i].State = Character.CharacterState.Afraid;
+                }
+
+                TimerAfraid.Start();
+                
+
+            }
+            return PlayerScore;
+        }
+
+        public int ShowScore(Label labelScore)
+        {
+            labelScore.Text = "SCORE: " +PlayerScore.ToString();
+            return 0;
+        }
+        public void Draw(Graphics g, List<Character> characterList)
+        {
+            Map.DrawMap(g);
+
+            foreach (Character character in characterList)
+            {
+                character.UpdatePos();
+                int gameoverFlag = character.Animate(g);
+                if(gameoverFlag == 1)
+                {
+                    CurrentStage = GameStage.GameOver;
+                }
+            }
+        }
+       
     }
 }

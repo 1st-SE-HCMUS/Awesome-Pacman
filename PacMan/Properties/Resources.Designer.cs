@@ -63,6 +63,16 @@ namespace PacMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5 {
+            get {
+                object obj = ResourceManager.GetObject("_5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap afraid__1_ {
             get {
                 object obj = ResourceManager.GetObject("afraid__1_", resourceCulture);
@@ -93,9 +103,9 @@ namespace PacMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap afraid_blink__2_ {
+        internal static System.Drawing.Bitmap afraid_blink__1_1 {
             get {
-                object obj = ResourceManager.GetObject("afraid_blink__2_", resourceCulture);
+                object obj = ResourceManager.GetObject("afraid_blink__1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,6 +323,56 @@ namespace PacMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fruit__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Fruit__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fruit__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Fruit__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fruit__3_ {
+            get {
+                object obj = ResourceManager.GetObject("Fruit__3_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fruit__4_ {
+            get {
+                object obj = ResourceManager.GetObject("Fruit__4_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fruit__5_ {
+            get {
+                object obj = ResourceManager.GetObject("Fruit__5_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap full {
             get {
                 object obj = ResourceManager.GetObject("full", resourceCulture);
@@ -425,20 +485,20 @@ namespace PacMan.Properties {
         ///++++++++++++++++++++++++++++
         ///++++++++++++++++++++++++++++
         ///++++++++++++++++++++++++++++
-        ///+            ++            +
-        ///+ ++++ +++++ ++ +++++ ++++ +
-        ///+ ++++ +++++ ++ +++++ ++++ +
-        ///+ ++++ +++++ ++ +++++ ++++ +
-        ///+                          +
-        ///+ ++++ ++ ++++++++ ++ ++++ +
-        ///+ ++++ ++ ++++++++ ++ ++++ +
-        ///+      ++    ++    ++      +
-        ///++++++ +++++ ++ +++++ ++++++
-        ///++++++ +++++ ++ +++++ ++++++
-        ///++++++ ++          ++ ++++++
-        ///++++++ ++ +++  +++ ++ ++++++
-        ///++++++ ++ ++++++++ ++ ++++++
-        ///   [rest of string was truncated]&quot;;.
+        ///+************++************+
+        ///+*++++*+++++*++*+++++*++++*+
+        ///+O++++*+++++*++*+++++*++++O+
+        ///+*++++*+++++*++*+++++*++++*+
+        ///+**************************+
+        ///+*++++*++*++++++++*++*++++*+
+        ///+*++++*++*++++++++*++*++++*+
+        ///+******++****++****++******+
+        ///++++++*+++++*++*+++++*++++++
+        ///++++++*+++++*++*+++++*++++++
+        ///++++++*++**********++*++++++
+        ///++++++*++*+++**+++*++*++++++
+        ///++++++*++*++++++++*++*++++++
+        ///+* [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pacman_map {
             get {
@@ -642,6 +702,16 @@ namespace PacMan.Properties {
         internal static System.Drawing.Bitmap up__2_ {
             get {
                 object obj = ResourceManager.GetObject("up__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Yellow_dot {
+            get {
+                object obj = ResourceManager.GetObject("Yellow_dot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

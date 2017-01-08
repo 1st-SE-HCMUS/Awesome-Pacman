@@ -11,14 +11,19 @@ namespace PacMan
     {
         protected GameMap.Pos MapPosition = new GameMap.Pos(2, 5); // current position in map(has bounds)
         protected PointF GraphicPosition; // current position in graphic
+        
 
-        protected List<CharacterSprite> SpriteAct;
+        protected List<Sprite> SpriteAct;
 
-        public enum CharacterState { Alive, Died }
         public enum Direction { Left, Right, Up, Down }
 
-        protected CharacterState State;
         protected Direction CurrDirection;
+
+        public enum CharacterState { Alive, Died, Afraid, Blinking, NeedDestroy}
+        
+
+        public CharacterState State = CharacterState.Alive;
+
         protected float Speed = 6f;
 
 
@@ -100,61 +105,59 @@ namespace PacMan
         }
 
 
-        virtual protected void Move()
+       virtual protected void Move()
         {
-            switch(CurrDirection)
-            {
-                case Direction.Left:
-                    {
-                        if (MapPosition.X - 1 >= 0 && (GameManager.MapDataWithBound[MapPosition.Y][MapPosition.X - 1] == Constant.RoadChar
-                            || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X - 1)) >= GameMap.BlockSize + Speed))
+            if(State != CharacterState.Died)
+                switch(CurrDirection)
+                {
+                    case Direction.Left:
                         {
-                            //MapPosition.Y--;
-                            GraphicPosition.X -= Speed;
+                            if (GameManager.MapDataWithBound[MapPosition.X][MapPosition.Y - 1] != Constant.WallChar
+                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y - 1)) >= GameMap.BlockSize + Speed)
+                            {
+                                //MapPosition.Y--;
+                                GraphicPosition.X -= Speed;
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case Direction.Right:
-                    {
-                        if (GameManager.MapDataWithBound[MapPosition.Y][MapPosition.X + 1] == Constant.RoadChar
-                            || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X + 1)) >= GameMap.BlockSize + Speed)
+                    case Direction.Right:
                         {
-                            //MapPosition.Y++;
-                            GraphicPosition.X += Speed;
+                            if (GameManager.MapDataWithBound[MapPosition.X][MapPosition.Y + 1] != Constant.WallChar
+                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y + 1)) >= GameMap.BlockSize + Speed)
+                            {
+                                //MapPosition.Y++;
+                                GraphicPosition.X += Speed;
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case Direction.Up:
-                    {
-                        if (MapPosition.Y >= 0 && (GameManager.MapDataWithBound[MapPosition.Y - 1][MapPosition.X] == Constant.RoadChar
-                            || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.Y - 1, MapPosition.X)) >= GameMap.BlockSize + Speed))
+                    case Direction.Up:
                         {
-                            //MapPosition.X--;
-                            GraphicPosition.Y -= Speed;
+                            if (GameManager.MapDataWithBound[MapPosition.X - 1][MapPosition.Y] != Constant.WallChar
+                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X - 1, MapPosition.Y)) >= GameMap.BlockSize + Speed)
+                            {
+                                //MapPosition.X--;
+                                GraphicPosition.Y -= Speed;
 
+                            }
+                            break;
                         }
-                        break;
-                    }
-                case Direction.Down:
-                    {
-                        if (GameManager.MapDataWithBound[MapPosition.Y + 1][MapPosition.X] == Constant.RoadChar
-                            || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.Y + 1, MapPosition.X)) >= GameMap.BlockSize + Speed)
+                    case Direction.Down:
                         {
-                            //MapPosition.X++;
-                            GraphicPosition.Y += Speed;
+                            if (GameManager.MapDataWithBound[MapPosition.X + 1][MapPosition.Y] != Constant.WallChar
+                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X + 1, MapPosition.Y)) >= GameMap.BlockSize + Speed)
+                            {
+                                //MapPosition.X++;
+                                GraphicPosition.Y += Speed;
 
+                            }
+                            break;
                         }
-                        break;
-                    }
-            }
+                }
 
-            MapPosition = GameMap.ToMapPosition(GraphicPosition.Y, GraphicPosition.X);
+            MapPosition = GameMap.ToMapPosition(GraphicPosition.X, GraphicPosition.Y);
         }
-
-        /// <summary>
-        /// Update current position and redraw
-        /// </summary>
-        virtual public void UpdatePos()
+            
+            public void UpdatePos()
         {
             Move();
             //Manager.DrawSolidSquare(g, Brushes.Yellow, CONST.MapBlockSize, GraphicPosition.X, GraphicPosition.Y);
@@ -169,8 +172,17 @@ namespace PacMan
         abstract public int Behave();
         virtual public int Animate(Graphics g)
         {
-            PointF drawPoint = new PointF(GraphicPosition.X - CharacterSprite.Size / 2, GraphicPosition.Y - CharacterSprite.Size / 2);
-
+            PointF drawPoint = new PointF(GraphicPosition.X - Sprite.Size / 2, GraphicPosition.Y - Sprite.Size / 2);
+            if(State == CharacterState.Afraid)
+            {
+                SpriteAct[4].draw(g, drawPoint);
+                return 0;
+            }
+            if (State == CharacterState.Blinking)
+            {
+                SpriteAct[5].draw(g, drawPoint);
+                return 0;
+            }
             switch (CurrDirection)
             {
                 case Direction.Left:
@@ -196,6 +208,17 @@ namespace PacMan
             }
             return 0;
         }
+        
+        public bool DetectingCollision(Character c)
+        {
+            if(GameManager.GetDistance(this.GraphicPosition, c.GraphicPosition) < Sprite.Size+2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         
     }
     

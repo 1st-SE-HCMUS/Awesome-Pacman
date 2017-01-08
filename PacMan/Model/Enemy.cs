@@ -11,7 +11,6 @@ namespace PacMan
 {
     abstract class Enemy : Character
     {
-        protected int Score;
         protected EnemyMode Mode;
         /// <summary>
         /// Character's last performed move. Auxiliary variable to help scene drwiwng process.
@@ -25,6 +24,8 @@ namespace PacMan
         public enum EnemyMode { Scatter, Chase, Pissed}
         protected Pathfinder pathfinder;
         private Stack<Direction> pathToPac;
+        public int Score = 1500;
+
 
         public Enemy()
         {
