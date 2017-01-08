@@ -123,7 +123,7 @@ namespace PacMan
         public void OnPlaying(Graphics g)
         {
             CountScore();
-            if(EatedDot == 30)//eated all dot (300)
+            if(EatedDot == 300)//eated all dot (300)
             {
                 CurrentStage = GameStage.Win;
             }
