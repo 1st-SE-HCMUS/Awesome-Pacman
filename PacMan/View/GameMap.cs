@@ -142,6 +142,22 @@ namespace PacMan
                             g.DrawLine(mapPen, posX, posY, posX, posY + HalfBlockSize);
                         }
                     }
+                    if (mapDataWithBound[i][j] == Constant.DotChar)
+                    {
+                        itemYellowDot.MapPosition = new Point(i, j);
+                        PointF pos = ToGraphicPosition(itemYellowDot.MapPosition.Y, itemYellowDot.MapPosition.X);
+                        pos.X -= Sprite.Size / 6;
+                        pos.Y -= Sprite.Size / 6;
+                        itemYellowDot.ItemSprite.draw(g, pos);
+                    }
+                    if (mapDataWithBound[i][j] == Constant.FruitChar)
+                    {
+                        itemFruit.MapPosition = new Point(i, j);
+                        PointF pos = ToGraphicPosition(itemFruit.MapPosition.Y, itemFruit.MapPosition.X);
+                        pos.X -= Sprite.Size / 2;
+                        pos.Y -= Sprite.Size / 2;
+                        itemFruit.ItemSprite.draw(g, pos);
+                    }
                 }
             }
         }
