@@ -75,7 +75,7 @@ namespace PacMan
             if ((pos.X > (width - 1)) || (pos.X < 0) || (pos.Y > (height - 1)) || (pos.Y < 0))
                 return SpaceType.Empty;
 
-            return spaces[pos.X, pos.Y];
+            return spaces[pos.Y, pos.X];
         }
 
         private List<string> mapDataWithBound;
@@ -90,13 +90,13 @@ namespace PacMan
 
                 spaces = new SpaceType[height, width];
 
-                for(int i = 0; i < height; i++)
-                    for(int j = 0; j < width; j++)
+                for(int y = 0; y < height; y++)
+                    for(int x = 0; x < width; x++)
                     {
-                        if (mapDataWithBound[i][j] == Constant.RoadChar)
-                            spaces[i, j] = SpaceType.Empty;
+                        if (mapDataWithBound[y][x] == Constant.WallChar)
+                            spaces[y, x] = SpaceType.Wall;
                         else 
-                            spaces[i, j] = SpaceType.Wall;
+                            spaces[y, x] = SpaceType.Empty;
                     }
             }
             else

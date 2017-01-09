@@ -87,10 +87,10 @@ namespace PacMan
                 Map = new GameMap(mapDataWithBound);
 
             ListEnemy = new List<Character>();
-            ListEnemy.Add(new CyanGhost(new GameMap.Pos(7, 2)));
-            ListEnemy.Add(new RedGhost(new GameMap.Pos(18, 14)));
-            ListEnemy.Add(new PinkGhost(new GameMap.Pos(21, 14)));
-            ListEnemy.Add(new OrangeGhost(new GameMap.Pos(5, 17)));
+            ListEnemy.Add(new CyanGhost(new GameMap.Pos(2, 7)));
+            ListEnemy.Add(new RedGhost(new GameMap.Pos(14, 18)));
+            ListEnemy.Add(new PinkGhost(new GameMap.Pos(14, 21)));
+            ListEnemy.Add(new OrangeGhost(new GameMap.Pos(17, 5)));
             PacMan = new Pacman();
 
             ScatterTime = 7;
@@ -302,24 +302,24 @@ namespace PacMan
         {
             GameMap.Pos PacmanPos = PacMan.GetPosition();
             //detect yellow dots
-            if (mapDataWithBound[PacmanPos.X][PacmanPos.Y] == Constant.DotChar)
+            if (mapDataWithBound[PacmanPos.Y][PacmanPos.X] == Constant.DotChar)
             {
                 EatedDot++;
                 PlayerScore += Constant.YellowDotPoint;
-                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.X]);
-                sb[PacmanPos.Y] = ' ';
+                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.Y]);
+                sb[PacmanPos.X] = ' ';
 
-                mapDataWithBound[PacmanPos.X] = sb.ToString();
+                mapDataWithBound[PacmanPos.Y] = sb.ToString();
             }
 
             //detect fruits
-            if (mapDataWithBound[PacmanPos.X][PacmanPos.Y] == Constant.FruitChar)
+            if (mapDataWithBound[PacmanPos.Y][PacmanPos.X] == Constant.FruitChar)
             {
                 PlayerScore += Constant.FruitPoint;
-                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.X]);
-                sb[PacmanPos.Y] = ' ';
+                StringBuilder sb = new StringBuilder(mapDataWithBound[PacmanPos.Y]);
+                sb[PacmanPos.X] = ' ';
 
-                mapDataWithBound[PacmanPos.X] = sb.ToString();
+                mapDataWithBound[PacmanPos.Y] = sb.ToString();
 
                 //change enemies state to afraid
                 for(int i = 0; i < ListEnemy.Count; i++)
