@@ -13,7 +13,7 @@ namespace PacMan
         {
             State = CharacterState.Afraid;
             MapPosition = startPoint;
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
         protected override int AddSprite()
         {

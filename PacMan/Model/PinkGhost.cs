@@ -12,7 +12,7 @@ namespace PacMan
         public PinkGhost(GameMap.Pos startPoint)
         {
             MapPosition = startPoint;
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
         protected override int AddSprite()
         {

@@ -30,7 +30,7 @@ namespace PacMan
         public Enemy()
         {
             MapPosition = new GameMap.Pos(14, 15);
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
             Mode = EnemyMode.Scatter;
             pathfinder = new Pathfinder();
         }

@@ -187,11 +187,11 @@ namespace PacMan
         /// convert position in map(has bounds) to position in graphic
         /// </summary>
         /// <returns></returns>
-        public static PointF ToGraphicPosition(int row, int col)
+        public static PointF ToGraphicPosition(int mapX, int mapY)
         {
             PointF posGraph = new PointF();
-            posGraph.X = col * BlockSize + HalfBlockSize + TopLeftX;
-            posGraph.Y = row * BlockSize + HalfBlockSize + TopLeftY;
+            posGraph.X = mapX * BlockSize + HalfBlockSize + TopLeftX;
+            posGraph.Y = mapY * BlockSize + HalfBlockSize + TopLeftY;
 
             return posGraph;
         }

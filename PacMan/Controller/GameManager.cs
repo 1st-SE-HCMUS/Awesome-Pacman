@@ -158,7 +158,7 @@ namespace PacMan
 
             
 
-                        return mapDataWithBound;
+            return mapDataWithBound;
         }
 
         public void OnPlaying(Graphics g)
@@ -169,7 +169,7 @@ namespace PacMan
                 CurrentStage = GameStage.Win;
             }
             //draw map, character, item
-            Draw(g, ListEnemy);
+            Draw(g, ListEnemy, PacMan);
         }
 
         public void CharacterBehavior()
@@ -339,18 +339,25 @@ namespace PacMan
             labelScore.Text = "SCORE: " +PlayerScore.ToString();
             return 0;
         }
-        public void Draw(Graphics g, List<Character> characterList)
+        public void Draw(Graphics g, List<Character> enemyList, Pacman pacman)
         {
             Map.DrawMap(g);
-
-            foreach (Character character in characterList)
+            int gameoverFlag;
+            foreach (Character character in enemyList)
             {
                 character.UpdatePos();
-                int gameoverFlag = character.Animate(g);
+                gameoverFlag = character.Animate(g);
                 if(gameoverFlag == 1)
                 {
                     CurrentStage = GameStage.GameOver;
                 }
+            }
+
+            pacman.UpdatePos();
+            gameoverFlag = pacman.Animate(g);
+            if (gameoverFlag == 1)
+            {
+                CurrentStage = GameStage.GameOver;
             }
         }
        

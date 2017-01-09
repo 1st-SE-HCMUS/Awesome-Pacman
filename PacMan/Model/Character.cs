@@ -33,13 +33,13 @@ namespace PacMan
         public Character()
         {
             AddSprite();
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
 
         public Character(GameMap.Pos posMap)
         {
             MapPosition = posMap;
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
 
         
@@ -165,7 +165,7 @@ namespace PacMan
 
         private void AdjustPos()
         {
-            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.Y, MapPosition.X);
+            GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
 
         abstract protected int AddSprite();
