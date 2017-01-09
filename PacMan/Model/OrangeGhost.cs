@@ -12,6 +12,7 @@ namespace PacMan
         public OrangeGhost(GameMap.Pos startPoint)
         {
             MapPosition = startPoint;
+            turnPoint = new GameMap.Pos(2, 33);
             GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
         protected override int AddSprite()
@@ -65,7 +66,30 @@ namespace PacMan
             else if (Mode == EnemyMode.Scatter)
             {
                 //Scatter
-                return ChooseWayToGo(manager.GetMap(), new GameMap.Pos(35, 25));
+                //Scatter
+                if (MapPosition.X == turnPoint.X && MapPosition.Y == turnPoint.Y && reachedCorner != true)
+                {
+                    reachedCorner = true;
+                    CurrDirection = Direction.Down;
+                }
+                if (reachedCorner == true)
+                {
+                    if (MapPosition.X != turnPoint.X || MapPosition.Y != turnPoint.Y)
+                    {
+                        if (CheckAvailableWay(GetLeftDirection(CurrDirection)) == true)
+                        {
+                            if (ChangeDirection(GetLeftDirection(CurrDirection)) == 1)
+                            {
+                                turnPoint = MapPosition;
+                                return 1;
+                            }
+                        }
+                    }
+
+                    return 1;
+                }
+
+                return ChooseWayToGo(manager.GetMap(), new GameMap.Pos(2, 33));
             }
             // Fuck..., no way to pacman
             else

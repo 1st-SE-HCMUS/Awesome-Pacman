@@ -92,8 +92,8 @@ namespace PacMan
             ListEnemy.Add(new OrangeGhost(new GameMap.Pos(17, 5)));
             PacMan = new Pacman();
 
-            ScatterTime = 7;
-            ChaseTime = 20;
+            ScatterTime = 20;
+            ChaseTime = 7;
             GameModeCount = 0;
 
 
@@ -263,7 +263,6 @@ namespace PacMan
                     {
                         e.Chase();
                     }
-                    System.Windows.Forms.MessageBox.Show("Chase begin");
                 }
                 else
                 {

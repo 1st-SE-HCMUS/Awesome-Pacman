@@ -11,8 +11,6 @@ namespace PacMan
     {
         protected GameMap.Pos MapPosition = new GameMap.Pos(2, 5); // current position in map(has bounds)
         protected PointF GraphicPosition; // current position in graphic
-        
-
         protected List<Sprite> SpriteAct;
 
         public enum Direction { Left, Right, Up, Down }
@@ -56,6 +54,8 @@ namespace PacMan
                                 //MapPosition.X--;
                                 AdjustPos();
                                 CurrDirection = Direction.Left;
+
+                                return 1;
                             }
                         }
 
@@ -70,6 +70,8 @@ namespace PacMan
                                 //MapPosition.X++;
                                 AdjustPos();
                                 CurrDirection = Direction.Right;
+
+                                return 1;
                             }
                         }
                         break;
@@ -83,6 +85,8 @@ namespace PacMan
                                 //MapPosition.Y--;
                                 AdjustPos();
                                 CurrDirection = Direction.Up;
+
+                                return 1;
                             }
                         }
                         break;
@@ -96,6 +100,8 @@ namespace PacMan
                                 //MapPosition.Y++;
                                 AdjustPos();
                                 CurrDirection = Direction.Down;
+
+                                return 1;
                             }
                         }
                         break;
@@ -144,7 +150,7 @@ namespace PacMan
                     case Direction.Down:
                         {
                             if (GameManager.MapDataWithBound[MapPosition.Y + 1][MapPosition.X] != Constant.WallChar
-                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y)) >= GameMap.BlockSize + Speed)
+                                || GameManager.GetDistance(GraphicPosition, GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y + 1)) >= GameMap.BlockSize + Speed)
                             {
                                 //MapPosition.X++;
                                 GraphicPosition.Y += Speed;
@@ -160,7 +166,6 @@ namespace PacMan
         public void UpdatePos()
         {
             Move();
-            //Manager.DrawSolidSquare(g, Brushes.Yellow, CONST.MapBlockSize, GraphicPosition.X, GraphicPosition.Y);
         }
 
         private void AdjustPos()

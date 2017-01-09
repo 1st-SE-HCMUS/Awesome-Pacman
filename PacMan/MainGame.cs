@@ -29,6 +29,7 @@ namespace PacMan
 
         public void InitNewGame()
         {
+            
             manager = GameManager.GetInstance();
             manager.Reset();
             manager = GameManager.GetInstance();

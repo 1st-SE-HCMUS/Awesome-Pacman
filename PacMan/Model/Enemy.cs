@@ -25,6 +25,8 @@ namespace PacMan
         protected Pathfinder pathfinder;
         private Stack<Direction> pathToPac;
         public int Score = 1500;
+        protected bool reachedCorner;
+        protected GameMap.Pos turnPoint;
 
 
         public Enemy()
@@ -32,6 +34,8 @@ namespace PacMan
             MapPosition = new GameMap.Pos(14, 15);
             GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
             Mode = EnemyMode.Scatter;
+            Speed = 3f;
+            reachedCorner = false;
             pathfinder = new Pathfinder();
         }
 
@@ -156,6 +160,48 @@ namespace PacMan
         public Stack<Direction> getPathToPac()
         {
             return pathToPac;
+        }
+
+        public Direction GetLeftDirection(Direction dir)
+        {
+            switch(dir)
+            {
+                case Direction.Down:
+                    return Direction.Right;
+                case Direction.Right:
+                    return Direction.Up;
+                case Direction.Up:
+                    return Direction.Left;
+                case Direction.Left:
+                    return Direction.Down;
+            }
+
+            return Direction.Left;
+        }
+
+        public bool CheckAvailableWay(Direction dir)
+        {
+            switch(dir)
+            {
+                case Direction.Down:
+                    if (GameManager.GetInstance().GetMap().getSpaceType(MapPosition + GameMap.UnitY) == GameMap.SpaceType.Empty)
+                        return true;
+                    break;
+                case Direction.Right:
+                    if (GameManager.GetInstance().GetMap().getSpaceType(MapPosition + GameMap.UnitX) == GameMap.SpaceType.Empty)
+                        return true;
+                    break;
+                case Direction.Up:
+                    if (GameManager.GetInstance().GetMap().getSpaceType(MapPosition - GameMap.UnitY) == GameMap.SpaceType.Empty)
+                        return true;
+                    break;
+                case Direction.Left:
+                    if (GameManager.GetInstance().GetMap().getSpaceType(MapPosition - GameMap.UnitX) == GameMap.SpaceType.Empty)
+                        return true;
+                    break;
+            }
+
+            return false;
         }
     }
 }
