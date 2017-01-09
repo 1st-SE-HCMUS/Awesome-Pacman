@@ -162,43 +162,6 @@ namespace PacMan
             }
         }
 
-
-        /*
-        public void Draw(Graphics g, List<Character> characterList, Pacman pacman)
-        {
-            DrawMap(g);
-            foreach (Character character in characterList)
-            {
-                character.UpdatePos();
-                character.Animate(g);
-
-                if (mapDataWithBound[i][j] == Constant.DotChar)
-                {
-                    itemYellowDot.MapPosition = new Point(i, j);
-                    PointF pos = ToGraphicPosition(itemYellowDot.MapPosition.X, itemYellowDot.MapPosition.Y);
-                    pos.X -= Sprite.Size / 6;
-                    pos.Y -= Sprite.Size / 6;
-                    itemYellowDot.ItemSprite.draw(g, pos);
-                }
-                if (mapDataWithBound[i][j] == Constant.FruitChar)
-                {
-                    itemFruit.MapPosition = new Point(i, j);
-                    PointF pos = ToGraphicPosition(itemFruit.MapPosition.X, itemFruit.MapPosition.Y);
-                    pos.X -= Sprite.Size / 2;
-                    pos.Y -= Sprite.Size / 2;
-                    itemFruit.ItemSprite.draw(g, pos);
-                }
-
-            }
-            pacman.UpdatePos();
-            pacman.Animate(g);
-        }
-         */
-
-            
-    
-        
-
         /// <summary>
         /// convert position in map(has bounds) to position in graphic
         /// </summary>
