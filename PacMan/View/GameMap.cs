@@ -64,9 +64,9 @@ namespace PacMan
 
         public SpaceType[,] spaces;
 
-        public bool setSpaceType(SpaceType st, int x, int y)
+        public bool setSpaceType(SpaceType st, int X, int Y)
         {
-            spaces[x, y] = st;
+            spaces[Y, X] = st;
             return true;
         }
 
@@ -93,7 +93,7 @@ namespace PacMan
                 for(int y = 0; y < height; y++)
                     for(int x = 0; x < width; x++)
                     {
-                        if (mapDataWithBound[y][x] == Constant.WallChar)
+                        if (mapDataWithBound[y][x] == Constant.WallChar || mapDataWithBound[y][x] == Constant.BoundChar)
                             spaces[y, x] = SpaceType.Wall;
                         else 
                             spaces[y, x] = SpaceType.Empty;
