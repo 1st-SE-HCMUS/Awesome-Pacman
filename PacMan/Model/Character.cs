@@ -105,7 +105,7 @@ namespace PacMan
         }
 
 
-       virtual protected void Move()
+        virtual protected void Move()
         {
             if(State != CharacterState.Died)
                 switch(CurrDirection)
@@ -157,7 +157,7 @@ namespace PacMan
             MapPosition = GameMap.ToMapPosition(GraphicPosition.X, GraphicPosition.Y);
         }
             
-            public void UpdatePos()
+        public void UpdatePos()
         {
             Move();
             //Manager.DrawSolidSquare(g, Brushes.Yellow, CONST.MapBlockSize, GraphicPosition.X, GraphicPosition.Y);

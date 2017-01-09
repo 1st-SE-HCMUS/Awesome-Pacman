@@ -85,7 +85,6 @@ namespace PacMan
             }
             else
                 Map = new GameMap(mapDataWithBound);
-
             ListEnemy = new List<Character>();
             ListEnemy.Add(new CyanGhost(new GameMap.Pos(2, 7)));
             ListEnemy.Add(new RedGhost(new GameMap.Pos(14, 18)));
@@ -96,6 +95,8 @@ namespace PacMan
             ScatterTime = 7;
             ChaseTime = 20;
             GameModeCount = 0;
+
+
         }
         
         public void SetCurrentStage(GameStage stage)
@@ -115,7 +116,12 @@ namespace PacMan
                 ListEnemy.Remove(c);
         }
                         
-        
+        public int Reset()
+        {
+            instance = new GameManager();
+
+            return 0;
+        }
                     
 
         /// <summary>
@@ -184,8 +190,8 @@ namespace PacMan
                     break;
                 }
                 //enemies vs pacman
-                if(i!= ListEnemy.Count-1)//not pacman vs its seft
-                    if (ListEnemy[i].DetectingCollision(ListEnemy[ListEnemy.Count-1]))
+                //if(i!= ListEnemy.Count-1)//not pacman vs its seft
+                    if (ListEnemy[i].DetectingCollision(PacMan))
                     {
                         if(ListEnemy[i].State == Character.CharacterState.Afraid 
                             || ListEnemy[i].State == Character.CharacterState.Blinking)
@@ -195,9 +201,9 @@ namespace PacMan
                             i--;
                             break;
                         }
-                        if(ListEnemy[i].State == Character.CharacterState.Alive)
+                        if(PacMan.State == Character.CharacterState.Alive)
                         {
-                            ListEnemy[ListEnemy.Count - 1].State = Character.CharacterState.Died;
+                            PacMan.State = Character.CharacterState.Died;
                         }
 
                     }

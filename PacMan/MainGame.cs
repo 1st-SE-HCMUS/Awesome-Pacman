@@ -29,7 +29,10 @@ namespace PacMan
 
         public void InitNewGame()
         {
-             manager = GameManager.GetInstance();
+            manager = GameManager.GetInstance();
+            manager.Reset();
+            manager = GameManager.GetInstance();
+
             timer_game.Start();
             timer_Afraid.Interval = manager.AfraidTime;
             timer_Afraid.Stop();
@@ -130,9 +133,10 @@ namespace PacMan
         private void label_Restart_Click(object sender, EventArgs e)
         {
             InitNewGame();
-
             manager.CurrentStage = GameManager.GameStage.Playing;
-            manager.CurrentStage = GameManager.GameStage.Playing;
+            labelScore.Visible = true;
+            labelGameTitle.Visible = false;
+            labelStart.Visible = false;
             labelScore.Visible = true;
             labelGameTitle.Visible = false;
             labelStart.Visible = false;
