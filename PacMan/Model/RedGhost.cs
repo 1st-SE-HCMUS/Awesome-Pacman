@@ -76,9 +76,9 @@ namespace PacMan
                 {
                     if (MapPosition.X != turnPoint.X || MapPosition.Y != turnPoint.Y)
                     {
-                        if (CheckAvailableWay(GetLeftDirection(CurrDirection)) == true)
+                        if (CheckAvailableWay(GetRightDirection(CurrDirection)) == true)
                         {
-                            if (ChangeDirection(GetLeftDirection(CurrDirection)) == 1)
+                            if (ChangeDirection(GetRightDirection(CurrDirection)) == 1)
                             {
                                 turnPoint = MapPosition;
                                 return 1;

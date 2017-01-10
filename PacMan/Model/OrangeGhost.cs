@@ -70,15 +70,25 @@ namespace PacMan
                 if (MapPosition.X == turnPoint.X && MapPosition.Y == turnPoint.Y && reachedCorner != true)
                 {
                     reachedCorner = true;
-                    CurrDirection = Direction.Down;
+                    CurrDirection = Direction.Right;
                 }
                 if (reachedCorner == true)
                 {
                     if (MapPosition.X != turnPoint.X || MapPosition.Y != turnPoint.Y)
                     {
-                        if (CheckAvailableWay(GetLeftDirection(CurrDirection)) == true)
+                        bool canTurnLeft = CheckAvailableWay(GetLeftDirection(CurrDirection));
+                        if (canTurnLeft)
                         {
                             if (ChangeDirection(GetLeftDirection(CurrDirection)) == 1)
+                            {
+                                turnPoint = MapPosition;
+                                return 1;
+                            }
+                        }
+
+                        if (!canTurnLeft && !CheckAvailableWay(CurrDirection))
+                        {
+                            if (ChangeDirection(GetRightDirection(CurrDirection)) == 1)
                             {
                                 turnPoint = MapPosition;
                                 return 1;

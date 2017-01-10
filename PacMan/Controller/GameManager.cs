@@ -261,7 +261,7 @@ namespace PacMan
                     //Change to Chase Mode
                     foreach (Enemy e in ListEnemy)
                     {
-                        e.Chase();
+                        //e.Chase();
                     }
                 }
                 else
@@ -282,13 +282,13 @@ namespace PacMan
         private void SetGameModeTime()
         {
             if (GameModeCount == 0 || GameModeCount == 1) {
-                ScatterTime = 7;
-                ChaseTime = 20;
+                ScatterTime = 15;
+                ChaseTime = 30;
             }
             else if (GameModeCount == 2)
             {
-                ScatterTime = 5;
-                ChaseTime = 20;
+                ScatterTime = 10;
+                ChaseTime = 30;
             }
             else if(GameModeCount == 3)
             {

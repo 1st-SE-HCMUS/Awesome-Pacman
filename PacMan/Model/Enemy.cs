@@ -179,6 +179,23 @@ namespace PacMan
             return Direction.Left;
         }
 
+        public Direction GetRightDirection(Direction dir)
+        {
+            switch (dir)
+            {
+                case Direction.Down:
+                    return Direction.Left;
+                case Direction.Right:
+                    return Direction.Down;
+                case Direction.Up:
+                    return Direction.Right;
+                case Direction.Left:
+                    return Direction.Up;
+            }
+
+            return Direction.Left;
+        }
+
         public bool CheckAvailableWay(Direction dir)
         {
             switch(dir)
