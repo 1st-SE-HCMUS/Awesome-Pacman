@@ -27,6 +27,7 @@ namespace PacMan
         public int Score = 1500;
         protected bool reachedCorner;
         protected GameMap.Pos turnPoint;
+        protected GameMap.Pos scatterTargetPoint;
 
 
         public Enemy()
@@ -47,6 +48,8 @@ namespace PacMan
         public void Scatter()
         {
             Mode = EnemyMode.Scatter;
+            turnPoint = scatterTargetPoint;
+            reachedCorner = false;
         }
 
         protected int ChooseWayToGo(GameMap map, GameMap.Pos pacmanPosition)
@@ -162,35 +165,37 @@ namespace PacMan
             return pathToPac;
         }
 
-        public Direction GetLeftDirection(Direction dir)
+        public Direction GetTurnDirection(Direction currDirection, Direction turnDirection)
         {
-            switch(dir)
+            switch(currDirection)
             {
                 case Direction.Down:
-                    return Direction.Right;
-                case Direction.Right:
-                    return Direction.Up;
-                case Direction.Up:
-                    return Direction.Left;
-                case Direction.Left:
-                    return Direction.Down;
-            }
+                    if (turnDirection == Direction.Right)
+                        return Direction.Left;
+                    else if(turnDirection == Direction.Left)
+                        return Direction.Right;
+                    break;
 
-            return Direction.Left;
-        }
-
-        public Direction GetRightDirection(Direction dir)
-        {
-            switch (dir)
-            {
-                case Direction.Down:
-                    return Direction.Left;
                 case Direction.Right:
-                    return Direction.Down;
+                     if (turnDirection == Direction.Right)
+                        return Direction.Down;
+                    else if(turnDirection == Direction.Left)
+                        return Direction.Up;
+                    break;
+
                 case Direction.Up:
-                    return Direction.Right;
+                    if (turnDirection == Direction.Right)
+                        return Direction.Right;
+                    else if(turnDirection == Direction.Left)
+                        return Direction.Left;
+                    break;
+
                 case Direction.Left:
-                    return Direction.Up;
+                    if (turnDirection == Direction.Right)
+                        return Direction.Up;
+                    else if(turnDirection == Direction.Left)
+                        return Direction.Down;
+                    break;
             }
 
             return Direction.Left;
@@ -219,6 +224,27 @@ namespace PacMan
             }
 
             return false;
+        }
+
+        public virtual int GoScatter(Direction startDirection)
+        {
+            //Scatter
+            if (MapPosition.X == scatterTargetPoint.X && MapPosition.Y == scatterTargetPoint.Y && reachedCorner != true)
+            {
+                reachedCorner = true;
+                CurrDirection = startDirection;
+            }
+            if (reachedCorner == true)
+            {
+                if (MapPosition.X != turnPoint.X || MapPosition.Y != turnPoint.Y)
+                {
+                    return 1;
+                }
+
+                return 0;
+            }
+
+            return -1;
         }
     }
 }

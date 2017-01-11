@@ -12,7 +12,8 @@ namespace PacMan
         public CyanGhost(GameMap.Pos startPoint)
         {
             MapPosition = startPoint;
-            turnPoint = new GameMap.Pos(27, 33);
+            scatterTargetPoint = new GameMap.Pos(27, 33);
+            turnPoint = scatterTargetPoint;
             GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
         }
         protected override int AddSprite()
@@ -66,40 +67,7 @@ namespace PacMan
             else if (Mode == EnemyMode.Scatter)
             {
                 //Scatter
-                //Scatter
-                if (MapPosition.X == turnPoint.X && MapPosition.Y == turnPoint.Y && reachedCorner != true)
-                {
-                    reachedCorner = true;
-                    CurrDirection = Direction.Left;
-                }
-                if (reachedCorner == true)
-                {
-                    if (MapPosition.X != turnPoint.X || MapPosition.Y != turnPoint.Y)
-                    {
-                        bool canTurnRight = CheckAvailableWay(GetRightDirection(CurrDirection));
-                        if (canTurnRight)
-                        {
-                            if (ChangeDirection(GetRightDirection(CurrDirection)) == 1)
-                            {
-                                turnPoint = MapPosition;
-                                return 1;
-                            }
-                        }
-
-                        if(!canTurnRight && !CheckAvailableWay(CurrDirection))
-                        {
-                            if (ChangeDirection(GetLeftDirection(CurrDirection)) == 1)
-                            {
-                                turnPoint = MapPosition;
-                                return 1;
-                            }
-                        }      
-                    }
-
-                    return 1;
-                }
-
-                return ChooseWayToGo(manager.GetMap(), new GameMap.Pos(27, 33));
+                return GoScatter(Direction.Left);
             }
             // Fuck..., no way to pacman
             else
@@ -107,6 +75,38 @@ namespace PacMan
                 //Pissed mode
                 return 0;
             }
+        }
+
+        public override int GoScatter(Direction startDirection)
+        {
+            int baseResult = base.GoScatter(startDirection);
+            if (baseResult == 1)
+            {
+                bool canTurnRight = CheckAvailableWay(GetTurnDirection(CurrDirection, Direction.Right));
+                if (canTurnRight)
+                {
+                    if (ChangeDirection(GetTurnDirection(CurrDirection, Direction.Right)) == 1)
+                    {
+                        turnPoint = MapPosition;
+                        return 1;
+                    }
+                }
+
+                if (!canTurnRight && !CheckAvailableWay(CurrDirection))
+                {
+                    if (ChangeDirection(GetTurnDirection(CurrDirection, Direction.Left)) == 1)
+                    {
+                        turnPoint = MapPosition;
+                        return 1;
+                    }
+                }
+            }
+            else if(baseResult == -1)
+            {
+                return ChooseWayToGo(GameManager.GetInstance().GetMap(), scatterTargetPoint);
+            }
+
+            return 1;
         }
     }
 }
