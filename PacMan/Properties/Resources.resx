@@ -310,4 +310,34 @@
   <data name="_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pacman_beginning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_beginning.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_chomp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_chomp.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_death" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_death.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_eatfruit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_eatfruit.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_eatghost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_eatghost.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_extrapac" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_extrapac.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pacman_intermission" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pacman_intermission.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Siren" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Siren.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Siren_Waka" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Siren_Waka.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WakaWaka" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WakaWaka.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,9 +43,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Pathfinder.cs" />
+    <Compile Include="Controller\SoundManager.cs" />
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\CyanGhost.cs" />
     <Compile Include="Model\Enemy.cs" />
@@ -294,6 +297,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Yellow_dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_intermission.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_beginning.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_chomp.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_death.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_eatfruit.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_eatghost.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pacman_extrapac.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Siren.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WakaWaka.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Siren_Waka.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

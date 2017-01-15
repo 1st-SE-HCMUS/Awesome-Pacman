@@ -58,6 +58,7 @@ namespace PacMan
             }
             if(manager.CurrentStage == GameManager.GameStage.Win)
             {
+                manager.MngSound.Stop(Controller.SoundManager.SOUND.Siren);
                 labelGameOver.Text = "YOU WIN!";
                 labelGameOver.Visible = true;
                 labelRestart.Visible = true;
@@ -69,7 +70,8 @@ namespace PacMan
                 labelRestart.Visible = true;
             }
             if(manager.CurrentStage == GameManager.GameStage.Menu)
-            {
+            { 
+
                 labelStart.Visible = true;
                 labelGameTitle.Visible = true;
             }
@@ -134,6 +136,7 @@ namespace PacMan
         private void label_Restart_Click(object sender, EventArgs e)
         {
             InitNewGame();
+            manager.MngSound.Play(Controller.SoundManager.SOUND.Siren, true);
             manager.CurrentStage = GameManager.GameStage.Playing;
             labelScore.Visible = true;
             labelGameTitle.Visible = false;
@@ -145,6 +148,7 @@ namespace PacMan
 
         private void labelStart_Click(object sender, EventArgs e)
         {
+            manager.MngSound.Play(Controller.SoundManager.SOUND.Siren, true);
             manager.CurrentStage = GameManager.GameStage.Playing;
             labelScore.Visible = true;
             labelGameTitle.Visible = false;

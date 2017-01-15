@@ -1,10 +1,14 @@
-﻿using PacMan.Model;
+﻿using PacMan.Controller;
+using PacMan.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace PacMan
 {
@@ -14,7 +18,8 @@ namespace PacMan
         public enum GameStage { Menu, Playing, Win, GameOver};
         public GameStage CurrentStage = GameStage.Menu;
         public  int PlayerScore = 0;
-        public int EatedDot = 0;
+        int EatedDot = 0;
+        int EatedToWin = 296;
         private string[] MapData;
         private static List<String> mapDataWithBound;
         private Pacman PacMan;
@@ -25,11 +30,10 @@ namespace PacMan
         private int Level;
         private int GameModeCount;
         public int AfraidTime = 3000;
-        public Timer TimerAfraid;
-        public Timer TimerBlink;
-
+        public System.Windows.Forms.Timer TimerAfraid;
+        public System.Windows.Forms.Timer TimerBlink;
         private static GameManager instance = null;
-
+        public SoundManager MngSound;
         public static GameManager GetInstance()
         {
             if (instance == null)
@@ -47,10 +51,7 @@ namespace PacMan
         {
             return Map;
         }
-
         
-        
-
         public static List<String> MapDataWithBound
         {
             get
@@ -77,6 +78,7 @@ namespace PacMan
 
         private GameManager()
         {
+            MngSound = new SoundManager();
             mapDataWithBound = ReadFileMap();
             if (mapDataWithBound == null)
             {
@@ -97,6 +99,7 @@ namespace PacMan
             GameModeCount = 0;
 
 
+            MngSound.Play(Controller.SoundManager.SOUND.Beginning, true);
         }
         
         public void SetCurrentStage(GameStage stage)
@@ -169,8 +172,9 @@ namespace PacMan
 
         public void OnPlaying(Graphics g)
         {
+            
             CountScore();
-            if(EatedDot == 300)//eated all dot (300)
+            if(EatedDot == EatedToWin)//eated all dot (300)
             {
                 CurrentStage = GameStage.Win;
             }
@@ -190,12 +194,12 @@ namespace PacMan
                     break;
                 }
                 //enemies vs pacman
-                //if(i!= ListEnemy.Count-1)//not pacman vs its seft
                     if (ListEnemy[i].DetectingCollision(PacMan))
                     {
                         if(ListEnemy[i].State == Character.CharacterState.Afraid 
                             || ListEnemy[i].State == Character.CharacterState.Blinking)
                         {
+                            MngSound.PlayByNewThread(SoundManager.SOUND.EatGhost);
                             ListEnemy[i].State = Character.CharacterState.NeedDestroy;
                             //Add score...
                             i--;
@@ -203,6 +207,7 @@ namespace PacMan
                         }
                         if(PacMan.State == Character.CharacterState.Alive)
                         {
+                            MngSound.Play(SoundManager.SOUND.Death);
                             PacMan.State = Character.CharacterState.Died;
                         }
 
@@ -218,7 +223,7 @@ namespace PacMan
 
         //for testing
         //If use this function, should move to View::GameMap.cs
-        static public void DrawSolidSquare(Graphics g, Brush brush, float size, float centerX, float centerY)
+        static public void DrawSolidSquare(Graphics g, System.Drawing.Brush brush, float size, float centerX, float centerY)
         {
             float haftSize = size / 2;
             g.FillRectangle(brush, centerX - haftSize, centerY - haftSize, size, size);
@@ -302,6 +307,10 @@ namespace PacMan
             }
         }
 
+        //sound api functions
+        [DllImport("winmm.dll")]
+        static extern Int32 mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
+       
         //count and destroy item on map
         private int CountScore()
         {
@@ -315,6 +324,7 @@ namespace PacMan
                 sb[PacmanPos.X] = ' ';
 
                 mapDataWithBound[PacmanPos.Y] = sb.ToString();
+                
             }
 
             //detect fruits
@@ -333,7 +343,7 @@ namespace PacMan
                 }
 
                 TimerAfraid.Start();
-                
+                MngSound.PlayByNewThread(SoundManager.SOUND.EatFruit);
 
             }
             return PlayerScore;
@@ -365,6 +375,8 @@ namespace PacMan
                 CurrentStage = GameStage.GameOver;
             }
         }
-       
+
+      
+
     }
 }
