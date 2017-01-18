@@ -47,6 +47,11 @@
             this.timer_Refresh_Graphic.Interval = 50;
             this.timer_Refresh_Graphic.Tick += new System.EventHandler(this.timerRefresh);
             // 
+            // timer_game
+            // 
+            this.timer_game.Interval = 1000;
+            this.timer_game.Tick += new System.EventHandler(this.timer_game_Tick);
+            // 
             // labelScore
             // 
             this.labelScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -87,11 +92,11 @@
             this.labelGameOver.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGameOver.ForeColor = System.Drawing.Color.Cyan;
-            this.labelGameOver.Location = new System.Drawing.Point(137, 276);
+            this.labelGameOver.Location = new System.Drawing.Point(93, 276);
             this.labelGameOver.Name = "labelGameOver";
-            this.labelGameOver.Size = new System.Drawing.Size(335, 58);
+            this.labelGameOver.Size = new System.Drawing.Size(418, 58);
             this.labelGameOver.TabIndex = 2;
             this.labelGameOver.Text = "GAME OVER";
             this.labelGameOver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -114,18 +119,13 @@
             // 
             this.labelGameTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelGameTitle.AutoSize = true;
-            this.labelGameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGameTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGameTitle.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.labelGameTitle.Location = new System.Drawing.Point(63, 206);
+            this.labelGameTitle.Location = new System.Drawing.Point(42, 208);
             this.labelGameTitle.Name = "labelGameTitle";
-            this.labelGameTitle.Size = new System.Drawing.Size(525, 58);
+            this.labelGameTitle.Size = new System.Drawing.Size(493, 54);
             this.labelGameTitle.TabIndex = 4;
             this.labelGameTitle.Text = "AWESOME PACMAN";
-            // 
-            // timer_game
-            // 
-            this.timer_game.Interval = 1000;
-            this.timer_game.Tick += new System.EventHandler(this.timer_game_Tick);
             // 
             // MainGame
             // 
@@ -133,13 +133,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(594, 760);
+            this.Controls.Add(this.labelGameOver);
             this.Controls.Add(this.labelGameTitle);
             this.Controls.Add(this.labelStart);
-            this.Controls.Add(this.labelGameOver);
             this.Controls.Add(this.labelRestart);
             this.Controls.Add(this.labelScore);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;

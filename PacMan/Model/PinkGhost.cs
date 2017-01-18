@@ -11,6 +11,9 @@ namespace PacMan
     {
         public PinkGhost(GameMap.Pos startPoint)
         {
+            Score += -200;
+            Speed += -0.5f;
+            id = 2;
             MapPosition = startPoint;
             scatterTargetPoint = new GameMap.Pos(2, 5);
             turnPoint = scatterTargetPoint;

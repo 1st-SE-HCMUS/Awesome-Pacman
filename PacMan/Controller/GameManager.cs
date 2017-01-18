@@ -23,7 +23,7 @@ namespace PacMan
         private string[] MapData;
         private static List<String> mapDataWithBound;
         private Pacman PacMan;
-        public List<Character> ListEnemy;
+        public List<Enemy> ListEnemy;
         private GameMap Map;
         private int ScatterTime;
         private int ChaseTime;
@@ -87,11 +87,11 @@ namespace PacMan
             }
             else
                 Map = new GameMap(mapDataWithBound);
-            ListEnemy = new List<Character>();
-            ListEnemy.Add(new CyanGhost(new GameMap.Pos(2, 7)));
-            ListEnemy.Add(new RedGhost(new GameMap.Pos(14, 18)));
-            ListEnemy.Add(new PinkGhost(new GameMap.Pos(14, 21)));
-            ListEnemy.Add(new OrangeGhost(new GameMap.Pos(17, 5)));
+            ListEnemy = new List<Enemy>();
+            ListEnemy.Add(new CyanGhost(new GameMap.Pos(16, 18)));
+            ListEnemy.Add(new RedGhost(new GameMap.Pos(15, 18)));
+            ListEnemy.Add(new PinkGhost(new GameMap.Pos(14, 18)));
+            ListEnemy.Add(new OrangeGhost(new GameMap.Pos(17, 18)));
             PacMan = new Pacman();
 
             ScatterTime = 20;
@@ -107,13 +107,13 @@ namespace PacMan
             CurrentStage = stage;
         }
 
-        public void addCharacter(Character c)
+        public void addEnemy(Enemy c)
         {
             if (c != null)
                 ListEnemy.Add(c);
         }
 
-        public void removeCharacter(Character c)
+        public void removeEnemy(Enemy c)
         {
             if (c != null)
                 ListEnemy.Remove(c);
@@ -182,14 +182,38 @@ namespace PacMan
             Draw(g, ListEnemy, PacMan);
         }
 
+        //check collision with other enemy, destroy object if nessesary
         public void CharacterBehavior()
         {  
-            //check collision with other enemy, destroy object if nessesary
             for(int i = 0; i < ListEnemy.Count; i++)
             {
                 if (ListEnemy[i].State == Character.CharacterState.NeedDestroy)
                 {
-                    removeCharacter(ListEnemy[i]);
+                    switch (ListEnemy[i].id)
+                    {
+                    case 1: //red
+                    {
+                        ListEnemy.Add(new RedGhost(new GameMap.Pos(15, 18)));
+                        break;
+                    }
+                    case 2: //pink
+                    {
+                        ListEnemy.Add(new PinkGhost(new GameMap.Pos(14, 18)));
+                        break;
+                    }
+                    case 3: //orange
+                    {
+                        ListEnemy.Add(new OrangeGhost(new GameMap.Pos(17, 18)));
+                        break;
+                    }
+                    case 4: //cyan
+                    {
+                        ListEnemy.Add(new CyanGhost(new GameMap.Pos(16, 18)));
+                        break;
+                    }
+
+                }       
+                    removeEnemy(ListEnemy[i]);
                     i--;
                     break;
                 }
@@ -266,7 +290,7 @@ namespace PacMan
                     //Change to Chase Mode
                     foreach (Enemy e in ListEnemy)
                     {
-                        //e.Chase();
+                        e.Chase();
                     }
                 }
                 else
@@ -354,7 +378,7 @@ namespace PacMan
             labelScore.Text = "SCORE: " +PlayerScore.ToString();
             return 0;
         }
-        public void Draw(Graphics g, List<Character> enemyList, Pacman pacman)
+        public void Draw(Graphics g, List<Enemy> enemyList, Pacman pacman)
         {
             Map.DrawMap(g);
             int gameoverFlag;

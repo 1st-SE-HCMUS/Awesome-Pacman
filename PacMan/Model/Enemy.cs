@@ -28,11 +28,11 @@ namespace PacMan
         protected bool reachedCorner;
         protected GameMap.Pos turnPoint;
         protected GameMap.Pos scatterTargetPoint;
-
+        public int id = 0;
 
         public Enemy()
         {
-            MapPosition = new GameMap.Pos(14, 15);
+            MapPosition = new GameMap.Pos(18, 15);
             GraphicPosition = GameMap.ToGraphicPosition(MapPosition.X, MapPosition.Y);
             Mode = EnemyMode.Scatter;
             Speed = 3f;

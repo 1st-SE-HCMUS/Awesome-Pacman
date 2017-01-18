@@ -11,6 +11,9 @@ namespace PacMan
     {
         public CyanGhost(GameMap.Pos startPoint)
         {
+            Score += 0;
+            Speed += 0;
+            id = 4;
             MapPosition = startPoint;
             scatterTargetPoint = new GameMap.Pos(27, 33);
             turnPoint = scatterTargetPoint;

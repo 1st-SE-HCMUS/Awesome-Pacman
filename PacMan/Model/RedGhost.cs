@@ -11,6 +11,9 @@ namespace PacMan
     {
         public RedGhost(GameMap.Pos startPoint)
         {
+            Score += 500;
+            Speed += 1;
+            id = 1;
             MapPosition = startPoint;
             scatterTargetPoint = new GameMap.Pos(27, 5);
             turnPoint = scatterTargetPoint;

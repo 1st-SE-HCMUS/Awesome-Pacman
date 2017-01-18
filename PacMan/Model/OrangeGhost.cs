@@ -11,6 +11,9 @@ namespace PacMan
     {
         public OrangeGhost(GameMap.Pos startPoint)
         {
+            Score += 300;
+            Speed += 0.5f;
+            id = 3;
             MapPosition = startPoint;
             scatterTargetPoint = new GameMap.Pos(2, 33);
             turnPoint = scatterTargetPoint;
