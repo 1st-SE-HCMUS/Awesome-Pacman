@@ -34,8 +34,6 @@ Describe any challenges encountered while building the app.
 
 ## Open-source libraries used
 
-- [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
-
 
 ## License
 
